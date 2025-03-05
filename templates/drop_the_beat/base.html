@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Drop The Beat -
+            {% block title_block %}
+            {% endblock %}
+        </title>
+    </head>
+    <body>
+        <h1>Drop The Beat</h1>
+        <a href="/">Home</a>
+        <a href="/drop_the_beat/addSong">Add Song</a>
+        <a href="/drop_the_beat/genres">Genres</a>
+        <a href="/drop_the_beat/artists">Artists</a>
+        <hr />
+        <div>
+            {% block body_block %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
