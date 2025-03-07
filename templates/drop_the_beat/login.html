@@ -1,0 +1,23 @@
+{% extends "drop_the_beat/base.html" %}
+
+{% block title_block %}
+    Login
+{% endblock %}
+
+{% block body_block %}
+    <h1>Login</h1>
+
+    <form method="POST" action="/drop_the_beat/login/" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p>Don't have an account? <a href="/drop_the_beat/signUp">Sign up here</a></p>
+{% endblock %}

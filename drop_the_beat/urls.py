@@ -10,4 +10,8 @@ urlpatterns = [
     path('addSong/', views.addSong, name='addSong'),
     path('artists/', views.artists, name='artists'),
     path('genres/', views.genres, name='genres'),
+    path('login/', views.user_login, name='login'),
+    path('signUp/', views.signUp, name='signUp'),
+    path('logout/', views.user_logout, name='logout'),
+
 ]
