@@ -10,7 +10,7 @@ class Artist(models.Model):
         return self.name
 
 class Genre(models.Model):
-    genre = models.CharField(choices=[('pop', 'Pop'), ('rock', 'Rock'), ('rap', 'Rap')])
+    genre = models.CharField(choices=[('pop', 'Pop'), ('rock', 'Rock'), ('rap', 'Rap')], max_length=100)
 
     def __str__(self):
         return self.genre
@@ -25,7 +25,7 @@ class Song(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.textfield(blank=True)
+    bio = models.TextField(blank=True)
     profile_picture = models.ImageField(upload_to="profile_pictures/", blank=True)
     favorite_genre = models.ForeignKey(Genre, null=True, blank=True, on_delete=models.SET_NULL)
     
@@ -35,7 +35,7 @@ class UserProfile(models.Model):
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     song = models.ForeignKey(Song, on_delete=models.CASCADE, related_name="reviews")
-    rating = models.PositiveIntegerField(choices=[1,2,3,4,5], default=5)  
+    rating = models.PositiveIntegerField(choices=[(1,2,3,4,5)], default=5)  
     comment = models.TextField(max_length=255, blank = True)
 
     class Meta:
