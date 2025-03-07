@@ -35,7 +35,7 @@ class UserProfile(models.Model):
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     song = models.ForeignKey(Song, on_delete=models.CASCADE, related_name="reviews")
-    rating = models.PositiveIntegerField(choices=[(1,2,3,4,5)], default=5)  
+    rating = models.PositiveIntegerField(choices=[(1, "1"),(2, "2"),(3, "2"),(4, "4"),(5, "5")], default=5)  
     comment = models.TextField(max_length=255, blank = True)
 
     class Meta:
