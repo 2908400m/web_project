@@ -35,9 +35,14 @@
         <a class="nav-link" href="{% url 'drop_the_beat:home' %}">Home</a></li>
     <li class="nav-item ">
         <a class="nav-link" href="{% url 'drop_the_beat:about' %}">About</a></li>
+    <li class="nav-item ">
+        <a class="nav-link" href="{% url 'drop_the_beat:genres' %}">Genres</a></li>
     <li class="nav-item">
         <a class="nav-link"
         href="{% url 'drop_the_beat:addSong' %}">Add Song</a></li>
+    <li class="nav-item ">
+        <a class="nav-link"
+        href="{% url 'drop_the_beat:artists' %}">Artists</a></li>
     <li class="nav-item ">
         <a class="nav-link" href="{% url 'drop_the_beat:login' %}">Login</a></li>
     {% if not user.is_authenticated %}

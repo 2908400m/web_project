@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block body_block %}
-    <h1>Welcome to the Artists Page</h1>
-    <p>This is a basic HTML page for testing purposes.</p>
+    <h1>Artists</h1>
+
+    <ul>
+        {% for artist in artists %}
+            <li><a href="/drop_the_beat/artist/{{ artist.id }}/">{{ artist.name }}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock %}

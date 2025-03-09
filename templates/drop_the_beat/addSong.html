@@ -1,11 +1,23 @@
 {% extends "drop_the_beat/base.html" %}
 
 {% block title_block %}
-    Add Song
+    Add a Song
 {% endblock %}
 
 {% block body_block %}
-    <h1>Welcome to the Add Song Page</h1>
-    <p>This is a basic HTML page for testing purposes.</p>
-{% endblock %}
+    <h1>Add a New Song</h1>
 
+    <form method="POST">
+        {% csrf_token %}
+
+        <h3>Song Details</h3>
+        {{ song_form.as_p }}
+
+        <h3>Review</h3>
+        {{ review_form.as_p }}
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="{% url 'artists' %}">Back to Artists</a>
+{% endblock %}

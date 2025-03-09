@@ -1,0 +1,22 @@
+{% extends "drop_the_beat/base.html" %}
+
+{% block title_block %}
+    {{ artist.name }}
+{% endblock %}
+
+{% block body_block %}
+    <h1>{{ artist.name }}</h1>
+    
+    <h3>Songs by {{ artist.name }}</h3>
+    {% if songs %}
+        <ul>
+            {% for song in songs %}
+                <li>{{ song.title }} (Genre: {{ song.genre.genre }})</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No songs available.</p>
+    {% endif %}
+
+    <a href="{% url 'artists' %}">Back to Artists</a>
+{% endblock %}

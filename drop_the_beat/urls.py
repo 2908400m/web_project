@@ -13,5 +13,11 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('signUp/', views.signUp, name='signUp'),
     path('logout/', views.user_logout, name='logout'),
+    path('rock/', views.rock, name='rock'),
+    path('pop/', views.pop, name='pop'),
+    path('rap/', views.rap, name='rap'),
+    path('artist/<int:artist_id>/', views.artist_detail, name='artist_detail'),
+    
+
 
 ]

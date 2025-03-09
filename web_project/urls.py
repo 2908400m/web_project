@@ -24,5 +24,7 @@ urlpatterns = [
     path('', views.home,name = 'home'),
     path('drop_the_beat/', include('drop_the_beat.urls')),
     path('admin/', admin.site.urls),
+    path('artists/', views.artists, name='artists'),
+    path('artist/<int:artist_id>/', views.artist_detail, name='artist_detail'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     

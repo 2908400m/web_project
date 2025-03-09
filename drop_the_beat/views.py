@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.urls import reverse
 from drop_the_beat.forms import UserForm, UserProfileForm
+from django.shortcuts import render, get_object_or_404
+from .models import Artist
+from .forms import SongForm, ReviewForm
 
 def home(request):
     return render(request, 'drop_the_beat/home.html')
@@ -15,14 +18,52 @@ def about(request):
 def contact(request):
     return render(request, 'drop_the_beat/contact.html')
 
+@login_required
 def addSong(request):
-    return render(request, 'drop_the_beat/addSong.html')
+    if request.method == "POST":
+        song_form = SongForm(request.POST)
+        review_form = ReviewForm(request.POST)
 
-def artists(request):
-    return render(request, 'drop_the_beat/artists.html')
+        if song_form.is_valid() and review_form.is_valid():
+            song = song_form.save()
+
+            review = review_form.save(commit=False)
+            review.song = song
+            review.user = request.user 
+            review.save()
+
+            return redirect('artists') 
+
+    else:
+        song_form = SongForm()
+        review_form = ReviewForm()
+
+    return render(request, 'drop_the_beat/addSong.html', {
+        'song_form': song_form,
+        'review_form': review_form
+    })
+
 
 def genres(request):
     return render(request, 'drop_the_beat/genres.html')
+
+def rock(request):
+    return render(request, 'drop_the_beat/rock.html')
+
+def pop(request):
+    return render(request, 'drop_the_beat/pop.html')
+
+def rap(request):
+    return render(request, 'drop_the_beat/rap.html')
+
+def artists(request):
+    all_artists = Artist.objects.all() 
+    return render(request, 'drop_the_beat/artists.html', {'artists': all_artists})
+
+def artist_detail(request, artist_id):
+    artist = get_object_or_404(Artist, id=artist_id)  
+    songs = artist.songs.all()  
+    return render(request, 'drop_the_beat/artist_detail.html', {'artist': artist, 'songs': songs})
 
 def user_login(request):
     if request.method == 'POST':
