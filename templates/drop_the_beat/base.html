@@ -63,6 +63,15 @@
         <a href="{% url 'drop_the_beat:logout' %}">Logout</a>
     {% endif %}
     </ul>
+
+    <div style="position: absolute; top: 0; right:0; padding: 9px; color: white;"> 
+        {% if user.is_authenticated %}
+            Hey there, {{ user.username }}!
+        {% else %}
+            Log in to add songs and much more!
+        {% endif %}
+    </div>
+
     </div>
     </nav>
 </header>
