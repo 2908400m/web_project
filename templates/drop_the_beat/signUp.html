@@ -5,22 +5,26 @@
 {% endblock %}
 
 {% block body_block %}
-    <h1>Sign Up</h1>
 
-    {% if registered %}
-        <strong>thank you for registering!</strong>
-        <a href="{% url 'home' %}">Return to the homepage.</a><br />
-    {% else %}
+    <div class="signup-div">
+        <h1>Sign Up</h1>
 
-    <form method="POST" action="/drop_the_beat/signUp/" enctype="multipart/form-data">
-        {% csrf_token %}
+        {% if registered %}
+            <strong>thank you for registering!</strong>
+            <a href="{% url 'home' %}">Return to the homepage.</a><br />
+        {% else %}
 
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
+        <form method="POST" action="/drop_the_beat/signUp/" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        <button type="submit">Sign Up</button>
-    </form>
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
 
-    <p>Already have an account? <a href="/drop_the_beat/login/">Login here</a></p>
-    {% endif %}
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <p>Already have an account? <a href="/drop_the_beat/login/">Login here</a></p>
+        {% endif %}
+    </div>
+    
 {% endblock %}
