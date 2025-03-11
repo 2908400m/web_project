@@ -1,66 +1,58 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author"
-        content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator"
-        content="Jekyll v3.8.5">
+    
     <title>
         Drop The Beat - 
         {% block title_block %}
         {% endblock %}
     </title>
-    <link href="https://getbootstrap.com/docs/4.2/dist/css/bootstrap.min.css"
-        rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.css"
-        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'drop_the_beat/style.css' %}">
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark p-0">
-    <a class="navbar-brand p-2" href="{% url 'drop_the_beat:home' %}">Drop The Beat</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#navbarCollapse" aria-controls="navbarCollapse"
-        aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'drop_the_beat:home' %}">Home</a></li>
-    <li class="nav-item ">
-        <a class="nav-link" href="{% url 'drop_the_beat:about' %}">About</a></li>
-    <li class="nav-item ">
-        <a class="nav-link" href="{% url 'drop_the_beat:genres' %}">Genres</a></li>
+    <div class="main_name">
+    <a href="{% url 'drop_the_beat:home' %}">Drop The Beat</a>
+    </div>
+
+    <br />
+    
+    <ul>
+    <li>
+        <a href="{% url 'drop_the_beat:home' %}">Home</a></li>
+    <li>
+        <a href="{% url 'drop_the_beat:about' %}">About</a></li>
+    <li>
+        <a href="{% url 'drop_the_beat:genres' %}">Genres</a></li>
 
     
-    <li class="nav-item ">
-        <a class="nav-link"
-        href="{% url 'drop_the_beat:artists' %}">Artists</a></li>
+    <li>
+        <a href="{% url 'drop_the_beat:artists' %}">Artists</a></li>
     
     {% if user.is_authenticated %}
-    <li class="nav-item">
-        <a class="nav-link"
-        href="{% url 'drop_the_beat:addSong' %}">Add Song</a>
+    <li>
+        <a href="{% url 'drop_the_beat:addSong' %}">Add Song</a>
     </li>
     {% endif %}
 
     
     {% if not user.is_authenticated %}
-    <li class="nav-item ">
-        <a class="nav-link" href="{% url 'drop_the_beat:login' %}">Login</a></li>
+    <li>
+        <a href="{% url 'drop_the_beat:login' %}">Login</a>
+    </li>
     
-    <li class="nav-item "></li>
-        <a class="nav-link"
-        href="{% url 'drop_the_beat:signUp' %}">Sign Up</a></li>
+    <li>
+        <a href="{% url 'drop_the_beat:signUp' %}">Sign Up</a>
+    </li>
     {% else %}
-    <li class="nav-item "></li>
+    <li>
         <a href="{% url 'drop_the_beat:logout' %}">Logout</a>
+    </li>
     {% endif %}
     </ul>
 
@@ -71,28 +63,10 @@
             Log in to add songs and much more!
         {% endif %}
     </div>
-
-    </div>
-    </nav>
-</header>
-<div class="container-fluid">
-    <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-    <div class="sidebar-sticky">
-    {% block sidebar_block %}
-    {% endblock %}
-    </div>
-    </nav>
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+<br />
     {% block body_block %}
     {% endblock %}
-    <footer>
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2025 Drop The Beat &middot; <a href="#">Privacy</a> &middot;
-    <a href="#">Terms</a></p>
-    </footer>
-    </main>
-    </div>
-</div>
+
+</body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script>
