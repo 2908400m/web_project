@@ -21,3 +21,19 @@ class ArtistDetailTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.artist.name)
 
+
+class UserLoginLogoutTests(TestCase):
+    def test_user_login(self):
+        user = User.objects.create_user(username='testuser', password='testuser')
+        response = self.client.post(reverse('drop_the_beat:login'), {'username': 'testuser', 'password': 'testuser'})
+
+        self.assertEqual(response.status_code, 302) # successful redirect
+        user.delete() # getting rid of the test user
+    
+    def test_user_logout(self):
+        user = User.objects.create_user(username='testuser', password='testuser')
+        self.client.login(username='testuser', password='testuser')
+        response = self.client.get(reverse('drop_the_beat:logout'))
+
+        self.assertEqual(response.status_code, 302) # successful redirect
+        user.delete() # getting rid of the test user
