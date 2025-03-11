@@ -1,7 +1,7 @@
 /* Base classes */
 
 body {
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family:"Comfortaa", Geneva, Tahoma, sans-serif;
   background-color:#A9C4EC;
 }
 
@@ -37,6 +37,7 @@ body {
 .top_right_nav li a:hover{
   color:gray;
 }
+
 .nav_bar ul{
   list-style-type: none;
   margin: 0;
@@ -74,6 +75,8 @@ body {
   background-color: #6666FF;
   padding: 14px 16px;
   font-size: 24px;
+  font-weight: bold;
+  border-radius: 15px;
 }
 
 .main_name a {
@@ -87,6 +90,8 @@ body {
   background-color:#6666FF;
   padding: 14px 16px;
   font-size: 18px;
+  border-radius: 15px;
+  color:midnightblue;
 }
 
 .top10 {
@@ -94,6 +99,8 @@ body {
   background-color:#6666FF;
   padding: 14px 16px;
   font-size: 18px;
+  border-radius: 15px;
+  color:midnightblue;
 }
 
 .top_artists {
@@ -102,12 +109,34 @@ body {
   padding: 14px 16px;
   font-size: 18px;
   margin-right: 16px;
+  border-radius: 15px;
+  color:midnightblue;
 }
 
 .home_block {
   display: inline-flex;
   position: absolute;
   width: 100%;
+}
+
+/* Login classes */
+.login {
+  display:inline-block;
+  background-color:#6666FF;
+  padding: 14px 16px;
+  font-size: 18px;
+  border-radius: 15px;
+  text-align: center;
+  color:midnightblue;
+}
+
+.login p {
+  font-size: 14px;
+}
+
+.login_page {
+  display: flex;
+  justify-content: center;
 }
 hr.thickborder {
   border: 10px solid #A9C4EC;

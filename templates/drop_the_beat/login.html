@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block body_block %}
+    <div class="login_page">
+    <div class="login">
     <h1>Login</h1>
 
     <form method="POST" action="/drop_the_beat/login/" enctype="multipart/form-data">
@@ -13,11 +15,15 @@
         <label for="username">Username:</label>
         <input type="text" name="username" required>
 
+        <br />
+
         <label for="password">Password:</label>
         <input type="password" name="password" required>
 
+        <p>Don't have an account? <a href="/drop_the_beat/signUp">Sign up here</a></p>
+        
         <button type="submit">Login</button>
     </form>
-
-    <p>Don't have an account? <a href="/drop_the_beat/signUp">Sign up here</a></p>
+    </div>
+    </div>
 {% endblock %}
