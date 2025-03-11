@@ -42,4 +42,4 @@ class Review(models.Model):
         unique_together = ("user", "song")
 
     def __str__(self):
-        return f"Review by {self.user.name} for {self.song.title}"
+        return f"Review by {self.user.username} for {self.song.title}"
