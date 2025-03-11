@@ -144,37 +144,7 @@ hr.thickborder {
 
 
 
-
 /* Login and SignUp pages */
-
-.login {
-  font-size: 20px;
-  padding: 10px 40px;
-  background-color: #9C27B0;
-  border: 0;
-  border-radius: 10px;
-}
-
-.login-div {
-  background-color: #6666FF;
-  width: 520px;
-  border-radius: 30px;
-
-  padding: 50px;
-  margin: auto;
-
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.login-input {
-  width: 240px;
-  height: 20px;
-}
-.login-text {
-  font-size: 18px;
-}
-
 
 
 .signup-div {
