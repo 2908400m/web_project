@@ -120,31 +120,46 @@ body {
 }
 
 /* Login classes */
-.login {
-  display:inline-block;
-  background-color:#6666FF;
-  padding: 14px 16px;
-  font-size: 18px;
-  border-radius: 15px;
-  text-align: center;
-  color:midnightblue;
-}
+.login-div {
+  background-color: #6666FF;
+  width: 520px;
+  border-radius: 30px;
 
-.login p {
-  font-size: 14px;
-}
+  padding: 50px;
+  margin: auto;
 
-.login_page {
-  display: flex;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
+
+.login-input {
+  width: 240px;
+  height: 20px;
+}
+
+.login-text {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.login-button {
+  font-size: 20px;
+  padding: 10px 40px;
+  background-color: #9C27B0;
+  border: 0;
+  border-radius: 10px;
+}
+
+
+
 hr.thickborder {
   border: 10px solid #A9C4EC;
 }
 
 
 
-/* Login and SignUp pages */
+/* SignUp */
 
 
 .signup-div {

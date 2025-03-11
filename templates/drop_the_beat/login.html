@@ -5,25 +5,24 @@
 {% endblock %}
 
 {% block body_block %}
-    <div class="login_page">
-    <div class="login">
-    <h1>Login</h1>
+    <div class="login-div">
+        <h1>Log In</h1>
 
-    <form method="POST" action="/drop_the_beat/login/" enctype="multipart/form-data">
-        {% csrf_token %}
+        <form method="POST" action="/drop_the_beat/login/" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        <label for="username">Username:</label>
-        <input type="text" name="username" required>
+            <p>
+                <label class="login-text" for="username">Username:</label>
+                <input class="login-input" type="text" name="username" required>
+            </p>
 
-        <br />
-
-        <label for="password">Password:</label>
-        <input type="password" name="password" required>
+            <p>
+                <label class="login-text" for="password">Password:</label>
+                <input class="login-input" type="password" name="password" required>
+            </p>
+            <button class="login-button" type="submit">Login</button>
+        </form>
 
         <p>Don't have an account? <a href="/drop_the_beat/signUp">Sign up here</a></p>
-        
-        <button type="submit">Login</button>
-    </form>
-    </div>
     </div>
 {% endblock %}

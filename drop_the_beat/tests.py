@@ -1,3 +1,9 @@
+# to run tests run "coverage run --source='.' manage.py test drop_the_beat"
+# in the terminal. then run "coverage report" afterwards to check the coverage
+# of the tests for the project
+#
+
+
 from django.test import TestCase
 from django.urls import reverse
 
