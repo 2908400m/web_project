@@ -19,14 +19,41 @@
     <div class="main_name">
     <a href="{% url 'drop_the_beat:home' %}">Drop The Beat</a>
     </div>
-
     <br />
-    
+    <div class = "top_right_nav">
+        <ul>
+            <li>
+                <a href="{% url 'drop_the_beat:contact' %}">Contact Us</a></li>
+
+            {% if not user.is_authenticated %}
+            <li>
+                <a href="{% url 'drop_the_beat:login' %}">Login</a>
+            </li>
+            
+            <li>
+                <a href="{% url 'drop_the_beat:signUp' %}">Sign Up</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'drop_the_beat:logout' %}">Logout</a>
+            </li>
+            {% endif %}
+            <li>
+                <a href="{% url 'drop_the_beat:about' %}">About</a></li>
+        </ul>
+        {% if user.is_authenticated %}
+            Hey there, {{ user.username }}!
+        {% else %}
+            Log in to add songs and much more!
+        {% endif %}
+    </div>
+    <br />
+
+    <div class="nav_bar">
     <ul>
     <li>
         <a href="{% url 'drop_the_beat:home' %}">Home</a></li>
-    <li>
-        <a href="{% url 'drop_the_beat:about' %}">About</a></li>
+    
     <li>
         <a href="{% url 'drop_the_beat:genres' %}">Genres</a></li>
 
@@ -39,29 +66,7 @@
         <a href="{% url 'drop_the_beat:addSong' %}">Add Song</a>
     </li>
     {% endif %}
-
-    
-    {% if not user.is_authenticated %}
-    <li>
-        <a href="{% url 'drop_the_beat:login' %}">Login</a>
-    </li>
-    
-    <li>
-        <a href="{% url 'drop_the_beat:signUp' %}">Sign Up</a>
-    </li>
-    {% else %}
-    <li>
-        <a href="{% url 'drop_the_beat:logout' %}">Logout</a>
-    </li>
-    {% endif %}
     </ul>
-
-    <div style="position: absolute; top: 0; right:0; padding: 9px; color: white;"> 
-        {% if user.is_authenticated %}
-            Hey there, {{ user.username }}!
-        {% else %}
-            Log in to add songs and much more!
-        {% endif %}
     </div>
 <br />
     {% block body_block %}

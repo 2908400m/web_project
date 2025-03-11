@@ -5,6 +5,52 @@
 {% endblock %}
 
 {% block body_block %}
-    <h1>Welcome to the Home Page</h1>
-    <p>This is a basic HTML page for testing purposes.</p>
+<div class="home_block">
+<div class="home_genres">
+    Genres
+    <br />
+    {% if genres %}
+    <ul>
+        {% for genre in genres %}
+        <li><a href="{% url 'drop_the_beat:genre'%}">{{ genre.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <strong>There are no genres present.</strong>
+    {% endif %}
+</div>
+
+<hr class="thickborder"/>
+
+<div class="top10">
+    Top 10 songs
+    <br />
+    {% if songs %}
+    <ul>
+        {% for song in songs %}
+        <li><a href="{% url 'drop_the_beat'%}">{{ song.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <strong>There are no songs present.</strong>
+    {% endif %}
+</div>
+
+<hr class="thickborder"/>
+
+<div class="top_artists">
+    Popular artists
+    <br />
+    {% if artists %}
+    <ul>
+        {% for artist in artists %}
+        <li><a href="{% url 'drop_the_beat'%}">{{ artist.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <strong>There are no artists present.</strong>
+    {% endif %}
+</div>
+
+</div>
 {% endblock %}
