@@ -5,6 +5,7 @@ class Artist(models.Model):
     name = models.CharField(max_length=255, unique=True)
     bio = models.TextField(blank = True)
     image = models.ImageField(upload_to="artist_image/", blank=True)
+    spotify_id = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
@@ -19,6 +20,9 @@ class Song(models.Model):
     title = models.CharField(max_length=255)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name="songs")
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name="genre_songs")
+    spotify_track_id= models.CharField(max_length=255)
+    song_preview_url= models.URLField()
+    album_art = models.URLField()
 
     def __str__(self):
         return self.title
