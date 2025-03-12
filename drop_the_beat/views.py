@@ -8,6 +8,9 @@ from drop_the_beat.forms import UserForm, UserProfileForm
 from django.shortcuts import render, get_object_or_404
 from .models import Artist
 from .forms import SongForm, ReviewForm
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+import os
 
 def home(request):
     return render(request, 'drop_the_beat/home.html')
@@ -17,6 +20,9 @@ def about(request):
 
 def contact(request):
     return render(request, 'drop_the_beat/contact.html')
+
+def spotify(request):
+    return render(request, 'drop_the_beat/spotify.html')
 
 @login_required
 def addSong(request):
@@ -120,3 +126,29 @@ def signUp(request):
 def user_logout(request):
     logout(request)
     return redirect(reverse('home'))
+
+spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(
+    client_id=os.getenv('SPOTIPY_CLIENT_ID'),
+    client_secret=os.getenv('SPOTIPY_CLIENT_SECRET')
+))
+
+def search_song_on_spotify(title, artist_name):
+    query = f"track:{title} artist{artist_name}"
+    results = spotify.search(q=query, limit=1, type="track")
+    
+    if results["tracks"]["items"]:
+        track=results["tracks"]["items"][0]
+    else:
+        track=None
+
+    if track:
+        return{
+            "title":track["name"],
+            "artist_name":track["artists"][0]["name"],
+            "track_id": track["id"],
+            "preview_url":track["preview_url"],
+            "cover_art":track["album"]["images"][0]["url"]
+        }
+    else:
+        return None
+
