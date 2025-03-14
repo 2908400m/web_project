@@ -6,14 +6,20 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from drop_the_beat.forms import UserForm, UserProfileForm
 from django.shortcuts import render, get_object_or_404
-from .models import Artist
+from .models import Artist, Song, Genre
 from .forms import SongForm, ReviewForm
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import os
 
 def home(request):
-    return render(request, 'drop_the_beat/home.html')
+    popular_artists = Artist.objects.order_by('-profile_views')[:10]
+
+    context = {
+        'popular_artists': popular_artists
+    }
+    
+    return render(request, 'drop_the_beat/home.html', context)
 
 def about(request):
     return render(request, 'drop_the_beat/about.html')
@@ -51,16 +57,14 @@ def addSong(request):
 
 
 def genres(request):
-    return render(request, 'drop_the_beat/genres.html')
+    return render(request, 'drop_the_beat/genres.html', {'genres': genres})
 
-def rock(request):
-    return render(request, 'drop_the_beat/rock.html')
+def genre_detail(request, genre_id):
+    genre = get_object_or_404(Genre, id=genre_id)
+    songs = genre.genre_songs.all()
+    return render(request, 'drop_the_beat/genre.html', {'genre': genre, 'songs': songs})
 
-def pop(request):
-    return render(request, 'drop_the_beat/pop.html')
 
-def rap(request):
-    return render(request, 'drop_the_beat/rap.html')
 
 def artists(request):
     all_artists = Artist.objects.all() 
@@ -68,6 +72,8 @@ def artists(request):
 
 def artist_detail(request, artist_id):
     artist = get_object_or_404(Artist, id=artist_id)  
+    artist.profile_views += 1
+    artist.save()
     songs = artist.songs.all()  
     return render(request, 'drop_the_beat/artist_detail.html', {'artist': artist, 'songs': songs})
 
@@ -127,7 +133,7 @@ def user_logout(request):
     logout(request)
     return redirect(reverse('home'))
 
-spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(
+""" spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(
     client_id=os.getenv('SPOTIPY_CLIENT_ID'),
     client_secret=os.getenv('SPOTIPY_CLIENT_SECRET')
 ))
@@ -150,7 +156,7 @@ def search_song_on_spotify(title, artist_name):
             "cover_art":track["album"]["images"][0]["url"]
         }
     else:
-        return None
+        return None """
 
 def song(request):
     return render(request, 'drop_the_beat/song.html')

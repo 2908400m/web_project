@@ -1,9 +1,20 @@
 {% extends "drop_the_beat/base.html" %}
 
 {% block title_block %}
-    Genre
+    {{ genre.genre }} Genre
 {% endblock %}
 
 {% block body_block %}
-    <h1>Genre page</h1>
+    <h1>{{ genre.genre }} Genre</h1>
+    
+    <h3>Songs in {{ genre.genre }} Genre</h3>
+    {% if songs %}
+        <ul>
+            {% for song in songs %}
+                <li>{{ song.title }} by {{ song.artist.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No songs available in this genre.</p>
+    {% endif %}
 {% endblock %}

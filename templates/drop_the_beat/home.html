@@ -12,7 +12,7 @@
     {% if genres %}
     <ul>
         {% for genre in genres %}
-        <li><a href="{% url 'drop_the_beat:genre'%}">{{ genre.name }}</a></li>
+        <li><a href="{% url 'genre_detail' genre.id %}">{{ genre.genre }}</a></li>
         {% endfor %}
         </ul>
     {% else %}
@@ -28,7 +28,7 @@
     {% if songs %}
     <ul>
         {% for song in songs %}
-        <li><a href="{% url 'drop_the_beat'%}">{{ song.name }}</a></li>
+        <li><a href="{% url 'drop_the_beat' %}">{{ song.name }}</a></li>
         {% endfor %}
         </ul>
     {% else %}
@@ -41,10 +41,10 @@
 <div class="top_artists">
     Popular artists
     <br />
-    {% if artists %}
+    {% if popular_artists %}
     <ul>
-        {% for artist in artists %}
-        <li><a href="{% url 'drop_the_beat'%}">{{ artist.name }}</a></li>
+        {% for artist in popular_artists %}
+        <li><a href="{% url 'drop_the_beat:artist_detail' artist.id %}">{{ artist.name }}</a></li>
         {% endfor %}
         </ul>
     {% else %}

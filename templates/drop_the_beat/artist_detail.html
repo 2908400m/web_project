@@ -6,6 +6,8 @@
 
 {% block body_block %}
     <h1>{{ artist.name }}</h1>
+
+    <p>Profile Views: {{ artist.profile_views }}</p>
     
     <h3>Songs by {{ artist.name }}</h3>
     {% if songs %}
