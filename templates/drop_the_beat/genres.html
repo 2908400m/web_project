@@ -7,14 +7,11 @@
 {% block body_block %}
     <h1>Welcome to the Genres Page</h1>
     <p>Select a genre to view its songs:</p>
-    
-    {% if genres %}
+
     <ul>
         {% for genre in genres %}
-        <li><a href="{% url 'genre' genre.id %}">{{ genre.genre }}</a></li>
+        <li><a href="/drop_the_beat/genre/{{ genre.id }}/">{{ genre.genre }}</a></li>
         {% endfor %}
     </ul>
-    {% else %}
-        <strong>There are no genres available.</strong>
-    {% endif %}
+
 {% endblock %}

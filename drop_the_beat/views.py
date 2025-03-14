@@ -57,7 +57,8 @@ def addSong(request):
 
 
 def genres(request):
-    return render(request, 'drop_the_beat/genres.html', {'genres': genres})
+    all_genres = Genre.objects.all()
+    return render(request, 'drop_the_beat/genres.html', {'genres': all_genres})
 
 def genre_detail(request, genre_id):
     genre = get_object_or_404(Genre, id=genre_id)
@@ -132,6 +133,8 @@ def signUp(request):
 def user_logout(request):
     logout(request)
     return redirect(reverse('home'))
+
+"""spotify temporary taken out to allow for testing of the rest of the code remove comments by selecting the code block and using shift alt A"""
 
 """ spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(
     client_id=os.getenv('SPOTIPY_CLIENT_ID'),
