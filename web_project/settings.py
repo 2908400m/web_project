@@ -103,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#spotipy 
+#spotify 
 load_dotenv()
 
 SPOTIPY_REDIRECT_URL="http://127.0.0.1:3000"

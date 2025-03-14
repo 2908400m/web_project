@@ -152,3 +152,8 @@ def search_song_on_spotify(title, artist_name):
     else:
         return None
 
+def song(request):
+    return render(request, 'drop_the_beat/song.html')
+
+def genre(request):
+    return render(request, 'drop_the_beat/genre.html')
