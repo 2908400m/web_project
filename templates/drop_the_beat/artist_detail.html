@@ -14,6 +14,15 @@
         <ul>
             {% for song in songs %}
                 <li>{{ song.title }} (Genre: {{ song.genre.genre }})</li>
+
+                {% if song.preview_url %}
+                    <audio controls>
+                        <source src="{{ song.preview_url}}" type="audio/mpeg">
+                        Your browser does not support the audio preview.
+                    </audio>
+                {% else %}
+                    <p> No music preview avaliable</p>
+                {% endif %}
             {% endfor %}
         </ul>
     {% else %}
