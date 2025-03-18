@@ -16,7 +16,7 @@ class UserProfileForm(forms.ModelForm):
         fields = ('bio', 'profile_picture', 'favorite_genre')
 
 class SongForm(forms.ModelForm):
-    Title = forms.CharField(label="Song Title", widget=forms.TextInput(attrs={'placeholder': 'Enter song title'}))
+    title = forms.CharField(label="Song Title", widget=forms.TextInput(attrs={'placeholder': 'Enter song title'}))
     artist = forms.CharField(label="Artist Name", widget=forms.TextInput(attrs={'placeholder': 'Enter artist name'}))
     genre = forms.CharField(label="Genre", widget=forms.TextInput(attrs={'placeholder': 'Enter genre'}))
 

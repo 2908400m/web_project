@@ -12,6 +12,11 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import os
 
+spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(
+    client_id=os.getenv('SPOTIPY_CLIENT_ID'),
+    client_secret=os.getenv('SPOTIPY_CLIENT_SECRET')
+))
+
 def home(request):
     popular_artists = Artist.objects.order_by('-profile_views')[:10]
 
@@ -37,7 +42,27 @@ def addSong(request):
         review_form = ReviewForm(request.POST)
 
         if song_form.is_valid() and review_form.is_valid():
+
+            title = song_form.cleaned_date["title"]
+            artist = song_form.cleaned_data["artist"]
+
             song = song_form.save()
+
+            song_data = search_song_on_spotify(title, artist)
+
+            if song_data:
+                artist = Artist.objects.get_or_create(name=song_data['artist_name'])[0]
+                song = Song(
+                    title=song_data["title"],
+                    artist=artist,
+                    spotify_track_id=song_data["spotify_track_id"],
+                    preview_url=song_data["preview_url"],
+                    cover_art=song_data["cover_art"]
+                    )
+                song.save()
+            else:
+                print(f"The song {title} by {artist} does not exist on spotify")
+                return HttpResponse("The submitted song does not exist on spotify.")
 
             review = review_form.save(commit=False)
             review.song = song
@@ -134,15 +159,8 @@ def user_logout(request):
     logout(request)
     return redirect(reverse('home'))
 
-"""spotify temporary taken out to allow for testing of the rest of the code remove comments by selecting the code block and using shift alt A"""
-
-""" spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(
-    client_id=os.getenv('SPOTIPY_CLIENT_ID'),
-    client_secret=os.getenv('SPOTIPY_CLIENT_SECRET')
-))
-
 def search_song_on_spotify(title, artist_name):
-    query = f"track:{title} artist{artist_name}"
+    query = f"track:{title} artist:{artist_name}"
     results = spotify.search(q=query, limit=1, type="track")
     
     if results["tracks"]["items"]:
@@ -159,7 +177,7 @@ def search_song_on_spotify(title, artist_name):
             "cover_art":track["album"]["images"][0]["url"]
         }
     else:
-        return None """
+        return None 
 
 def song(request):
     return render(request, 'drop_the_beat/song.html')
