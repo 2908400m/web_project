@@ -48,8 +48,6 @@ def addSong(request):
             artist = song_form.cleaned_data["artist"]
             genre = song_form.cleaned_data["genre"]
 
-            song = song_form.save()
-
             song_data = search_song_on_spotify(title, artist)
 
             if song_data:
@@ -103,6 +101,7 @@ def artist_detail(request, artist_id):
     artist.profile_views += 1
     artist.save()
     songs = artist.songs.all()  
+    print(artist.songs.all())
     return render(request, 'drop_the_beat/artist_detail.html', {'artist': artist, 'songs': songs})
 
 def user_login(request):
