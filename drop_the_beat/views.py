@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.conf import settings
 from drop_the_beat.forms import UserForm, UserProfileForm
 from django.shortcuts import render, get_object_or_404
 from .models import Artist, Song, Genre
@@ -11,11 +12,14 @@ from .forms import SongForm, ReviewForm
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import os
+from dotenv import load_dotenv
 
-spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(
+client_credentials_manager = SpotifyClientCredentials(
     client_id=os.getenv('SPOTIPY_CLIENT_ID'),
     client_secret=os.getenv('SPOTIPY_CLIENT_SECRET')
-))
+)
+
+spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 def home(request):
     popular_artists = Artist.objects.order_by('-profile_views')[:10]
@@ -32,9 +36,6 @@ def about(request):
 def contact(request):
     return render(request, 'drop_the_beat/contact.html')
 
-def spotify(request):
-    return render(request, 'drop_the_beat/spotify.html')
-
 @login_required
 def addSong(request):
     if request.method == "POST":
@@ -43,8 +44,9 @@ def addSong(request):
 
         if song_form.is_valid() and review_form.is_valid():
 
-            title = song_form.cleaned_date["title"]
+            title = song_form.cleaned_data["title"]
             artist = song_form.cleaned_data["artist"]
+            genre = song_form.cleaned_data["genre"]
 
             song = song_form.save()
 
@@ -55,9 +57,9 @@ def addSong(request):
                 song = Song(
                     title=song_data["title"],
                     artist=artist,
+                    genre=genre,
                     spotify_track_id=song_data["spotify_track_id"],
-                    preview_url=song_data["preview_url"],
-                    cover_art=song_data["cover_art"]
+                    album_art=song_data["cover_art"]
                     )
                 song.save()
             else:
@@ -172,8 +174,7 @@ def search_song_on_spotify(title, artist_name):
         return{
             "title":track["name"],
             "artist_name":track["artists"][0]["name"],
-            "track_id": track["id"],
-            "preview_url":track["preview_url"],
+            "spotify_track_id": track["id"],
             "cover_art":track["album"]["images"][0]["url"]
         }
     else:

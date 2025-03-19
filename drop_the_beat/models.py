@@ -22,7 +22,6 @@ class Song(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name="songs")
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name="genre_songs")
     spotify_track_id= models.CharField(max_length=255, blank=True)
-    song_preview_url= models.URLField(blank=True)
     album_art = models.URLField(blank=True)
 
     def __str__(self):
