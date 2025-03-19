@@ -12,7 +12,8 @@ from .forms import SongForm, ReviewForm
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import os
-from dotenv import load_dotenv
+from collections import defaultdict
+
 
 client_credentials_manager = SpotifyClientCredentials(
     client_id=os.getenv('SPOTIPY_CLIENT_ID'),
@@ -57,7 +58,8 @@ def addSong(request):
                     artist=artist,
                     genre=genre,
                     spotify_track_id=song_data["spotify_track_id"],
-                    album_art=song_data["cover_art"]
+                    album_art=song_data["cover_art"],
+                    album_name=song_data["album_name"]
                     )
                 song.save()
             else:
@@ -101,8 +103,11 @@ def artist_detail(request, artist_id):
     artist.profile_views += 1
     artist.save()
     songs = artist.songs.all()  
-    print(artist.songs.all())
-    return render(request, 'drop_the_beat/artist_detail.html', {'artist': artist, 'songs': songs})
+    albums = defaultdict(list)
+    for song in songs:
+        albums[song.album_name].append(song)
+
+    return render(request, 'drop_the_beat/artist_detail.html', {'artist': artist, 'songs': songs, 'albums':dict(albums)})
 
 def user_login(request):
     if request.method == 'POST':
@@ -174,7 +179,8 @@ def search_song_on_spotify(title, artist_name):
             "title":track["name"],
             "artist_name":track["artists"][0]["name"],
             "spotify_track_id": track["id"],
-            "cover_art":track["album"]["images"][0]["url"]
+            "cover_art":track["album"]["images"][0]["url"],
+            "album_name":track["album"]["name"]
         }
     else:
         return None 

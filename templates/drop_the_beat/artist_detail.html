@@ -10,27 +10,34 @@
     <p>Profile Views: {{ artist.profile_views }}</p>
     
     <h3>Songs by {{ artist.name }}</h3>
-    {% if songs %}
-        <ul>
-            {% for song in songs %}
-                <li>{{ song.title }} (Genre: {{ song.genre.genre }})</li>
+    {% if albums %}
+        {% for album_name, songs in albums.items %}
+            <h2>{{ album_name }}</h2>
 
-                {% if song.album_art %}
-                    <img src="{{ song.album_art }}" alt="Album Art" width="200" height="200">
-                {% else %}
-                    <p>No album art available</p>
-                {% endif %}
+            {% if songs.0.album_art %}
+                <img src="{{ songs.0.album_art }}" alt="Album Art" width="200" height="200">
+            {% else %}
+                <p>No album art available</p>
+            {% endif %}
+            <ul>
+                {% for song in songs %}
+                
+                    <li>{{ song.title }} (Genre: {{ song.genre.genre }})</li>
 
-                {% if song.spotify_track_id %}
-                    <iframe src="https://open.spotify.com/embed/track/{{song.spotify_track_id}}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                {% else %}
-                    <p> No music preview avaliable</p>
-                {% endif %}
-            {% endfor %}
-        </ul>
+                    {% if song.spotify_track_id %}
+                        <iframe src="https://open.spotify.com/embed/track/{{song.spotify_track_id}}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                    {% else %}
+                        <p> No music preview avaliable</p>
+                    {% endif %}
+
+                {% endfor %}
+            </ul>
+        {% endfor %}
+
     {% else %}
         <p>No songs available.</p>
     {% endif %}
 
     <a href="{% url 'artists' %}">Back to Artists</a>
+    
 {% endblock %}
