@@ -86,27 +86,31 @@ body {
 /* Home page classes */
 
 .home-blocks {
-  display:inline-block;
+  flex:1;
   background-color:darkorchid;
   padding: 14px 16px;
   font-size: 18px;
   border-radius: 15px;
-  color:midnightblue;
+  color:white;
+}
+.home-blocks a{
+  color:white;
+  overflow:hidden;
 }
 
-.top-artists {
-  display:inline-block;
-  background-color:darkorchid;
-  padding: 14px 16px;
-  font-size: 18px;
-  margin-right: 16px;
-  border-radius: 15px;
-  color:midnightblue;
+.home-blocks a:hover{
+  color:lightgray;
+}
+
+.home-blocks li{
+  text-decoration:none;
 }
 
 .home-page {
-  display: inline-flex;
-  position: absolute;
+  display:flex;
+  justify-content: center;
+  position: relative;
+  text-align: center;
   width: 100%;
 }
 
@@ -141,14 +145,6 @@ body {
   border: 0;
   border-radius: 10px;
 }
-
-
-
-hr.thickborder {
-  border: 10px solid #A9C4EC;
-}
-
-
 
 /* SignUp */
 

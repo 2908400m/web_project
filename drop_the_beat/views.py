@@ -13,7 +13,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import os
 from collections import defaultdict
-from dotenv import load_dotenv, dotenv_values
+from dotenv import load_dotenv
 
 load_dotenv()
 
