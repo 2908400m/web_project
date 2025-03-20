@@ -5,38 +5,58 @@
 {% endblock %}
 
 {% block body_block %}
-    <h1>{{ artist.name }}</h1>
+    <div class="artist-page">
+    <div class="page-blocks">
+    <div class="artist-name">
+        <h1>{{ artist.name }}</h1>
+        <p>Profile Views: {{ artist.profile_views }}</p>
+    </div>
+    </div>
 
-    <p>Profile Views: {{ artist.profile_views }}</p>
-    
-    <h3>Songs by {{ artist.name }}</h3>
+    <hr />
+
+    <div class="page-blocks">
+    {% if artist.bio %}
+        <p>{{ artist.bio }}</p>
+    {% else %}
+        <p>No bio</p>
+    {% endif %}
+    </div>
+    </div>
+
+    <br />
+
     {% if albums %}
         {% for album_name, songs in albums.items %}
-            <h2>Album: {{ album_name }}</h2>
+        <div class="song-list">
 
-            {% if songs.0.album_art %}
-                <img src="{{ songs.0.album_art }}" alt="Album Art" width="200" height="200">
+            
+
+            <h2>{% if songs.0.album_art %}
+                <img src="{{ songs.0.album_art }}" alt="Album Art" width="150" height="150">
             {% else %}
                 <p>No album art available</p>
             {% endif %}
-            <ul>
+            {{ album_name }} 
+            </h2>
+
+                <ul>
                 {% for song in songs %}
                 
                     <li><a href="{% url 'drop_the_beat:song' song.id %}">{{ song.title }}</a> (Genre: {{ song.genre.genre }})</li>
 
-                    {% if song.spotify_track_id %}
-                        <iframe src="https://open.spotify.com/embed/track/{{song.spotify_track_id}}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    {% else %}
-                        <p> No music preview avaliable</p>
-                    {% endif %}
-
                 {% endfor %}
             </ul>
+            
+        </div>
+
+        <br />
         {% endfor %}
 
     {% else %}
         <p>No songs available.</p>
     {% endif %}
+
 
     <a href="{% url 'artists' %}">Back to Artists</a>
     

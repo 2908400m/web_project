@@ -85,7 +85,7 @@ body {
 
 /* Home page classes */
 
-.home-blocks {
+.page-blocks {
   flex:1;
   background-color:darkorchid;
   padding: 14px 16px;
@@ -93,16 +93,16 @@ body {
   border-radius: 15px;
   color:white;
 }
-.home-blocks a{
+.page-blocks a{
   color:white;
   overflow:hidden;
 }
 
-.home-blocks a:hover{
+.page-blocks a:hover{
   color:lightgray;
 }
 
-.home-blocks li{
+.page-blocks li{
   text-decoration:none;
 }
 
@@ -160,4 +160,35 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+/* Artist */
+
+.artist-name {
+  width:30%;
+}
+
+.artist-page {
+  display:flex;
+  justify-content: center;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
+.song-list {
+  display:inline-block;
+  justify-content: center;
+  background-color:darkslateblue;
+  border-radius: 15px;
+  text-align:left;
+  color:white;
+  width:100%;
+  padding: 14px 16px;
+  margin-block-end: 15px;
+}
+
+.song-list a{
+  color:white;
+  overflow:hidden;
 }
