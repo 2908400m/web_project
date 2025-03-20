@@ -13,7 +13,9 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import os
 from collections import defaultdict
+from dotenv import load_dotenv, dotenv_values
 
+load_dotenv()
 
 client_credentials_manager = SpotifyClientCredentials(
     client_id=os.getenv('SPOTIPY_CLIENT_ID'),
@@ -185,8 +187,6 @@ def search_song_on_spotify(title, artist_name):
     else:
         return None 
 
-def song(request):
-    return render(request, 'drop_the_beat/song.html')
-
-def genre(request):
-    return render(request, 'drop_the_beat/genre.html')
+def song(request, song_id):
+    song = get_object_or_404(Song, id=song_id) 
+    return render(request, 'drop_the_beat/song.html', {'song': song})

@@ -15,6 +15,7 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     path('artist/<int:artist_id>/', views.artist_detail, name='artist_detail'),
     path('genre/<int:genre_id>/', views.genre_detail, name='genre_detail'),
+    path('song/<int:song_id>/', views.song, name='song'),
     
 
 

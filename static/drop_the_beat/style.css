@@ -85,27 +85,18 @@ body {
 
 /* Home page classes */
 
-.home_genres {
+.home-blocks {
   display:inline-block;
-  background-color:#6666FF;
+  background-color:darkorchid;
   padding: 14px 16px;
   font-size: 18px;
   border-radius: 15px;
   color:midnightblue;
 }
 
-.top10 {
+.top-artists {
   display:inline-block;
-  background-color:#6666FF;
-  padding: 14px 16px;
-  font-size: 18px;
-  border-radius: 15px;
-  color:midnightblue;
-}
-
-.top_artists {
-  display:inline-block;
-  background-color:#6666FF;
+  background-color:darkorchid;
   padding: 14px 16px;
   font-size: 18px;
   margin-right: 16px;
@@ -113,7 +104,7 @@ body {
   color:midnightblue;
 }
 
-.home_block {
+.home-page {
   display: inline-flex;
   position: absolute;
   width: 100%;
