@@ -83,6 +83,7 @@ def addSong(request):
         'song_form': song_form,
         'review_form': review_form
     })
+    
 
 
 def genres(request):
@@ -104,8 +105,10 @@ def artist_detail(request, artist_id):
     artist = get_object_or_404(Artist, id=artist_id)  
     artist.profile_views += 1
     artist.save()
+
     songs = artist.songs.all()  
     albums = defaultdict(list)
+
     for song in songs:
         albums[song.album_name].append(song)
 
@@ -189,4 +192,26 @@ def search_song_on_spotify(title, artist_name):
 
 def song(request, song_id):
     song = get_object_or_404(Song, id=song_id) 
-    return render(request, 'drop_the_beat/song.html', {'song': song})
+    reviews = defaultdict(list)
+    song_reviews = song.reviews.all()
+    review_form = ReviewForm()
+
+    for review in song_reviews:
+        print(review.comment)
+        if review.comment and review.comment != '':
+            reviews[song.title].append({
+                "user":review.user,
+                "comment":review.comment
+            })
+
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            review_form = ReviewForm(request.POST)
+            if review_form.is_valid():
+                review = review_form.save(commit=False)
+                review.song = song
+                review.user = request.user
+                review.save()
+                return redirect('song', song_id=song.id)
+
+    return render(request, 'drop_the_beat/song.html', {'song': song,'reviews':dict(reviews),'review_form': review_form})

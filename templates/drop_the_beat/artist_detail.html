@@ -12,7 +12,7 @@
     <h3>Songs by {{ artist.name }}</h3>
     {% if albums %}
         {% for album_name, songs in albums.items %}
-            <h2>{{ album_name }}</h2>
+            <h2>Album: {{ album_name }}</h2>
 
             {% if songs.0.album_art %}
                 <img src="{{ songs.0.album_art }}" alt="Album Art" width="200" height="200">

@@ -6,4 +6,34 @@
 
 {% block body_block %}
     <h1>{{ song.title }}</h1>
+
+    {% if song.spotify_track_id %}
+        <iframe src="https://open.spotify.com/embed/track/{{song.spotify_track_id}}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    {% else %}
+        <p> No music preview avaliable</p>
+    {% endif %}
+
+    <h2>Reviews</h2>
+
+    {% if reviews and song.title in reviews %}
+        <ul>
+            {% for review_list in reviews.values %}
+                {% for review in review_list %}
+                    <li>{{ review.user }}: {{review.comment}}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <h3>Add a Review</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ review_form.as_p }}
+            <button type="submit">Submit Review</button>
+        </form>
+    {% else %}
+        <p><a href="{% url 'drop_the_beat:login' %}">Login</a> to leave a review!</p>
+    {% endif %}
+
 {% endblock %}
