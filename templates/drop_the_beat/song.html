@@ -25,7 +25,7 @@
         <ul>
             {% for review_list in reviews.values %}
                 {% for review in review_list %}
-                    <li>{{ review.user }}: {{review.comment}}</li>
+                    <li><strong>{{ review.user }}'s</strong> rating: {{ review.rating }}/5 - {{review.comment}}</li>
                 {% endfor %}
             {% endfor %}
         </ul>

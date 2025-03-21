@@ -211,7 +211,8 @@ def song(request, song_id):
         if review.comment and review.comment != '':
             reviews[song.title].append({
                 "user":review.user,
-                "comment":review.comment
+                "comment":review.comment,
+                "rating":review.rating
             })
 
     review_form = ReviewForm(request.POST or None)
