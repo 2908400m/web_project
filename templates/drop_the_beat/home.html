@@ -25,10 +25,10 @@
 <div class="page-blocks">
     Top 10 songs
     <br />
-    {% if songs %}
+    {% if popular_songs %}
     <ul>
-        {% for song in songs %}
-        <li><a href="{% url 'drop_the_beat' %}">{{ song.name }}</a></li>
+        {% for song in popular_songs %}
+        <li><a href="{% url 'song' song.id %}">{{ song.title }}</a> by {{ song.artist.name }}</li>
         {% endfor %}
         </ul>
     {% else %}

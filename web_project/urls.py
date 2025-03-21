@@ -26,5 +26,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('artists/', views.artists, name='artists'),
     path('artist/<int:artist_id>/', views.artist_detail, name='artist_detail'),
+    path('song/<int:song_id>/', views.song, name='song'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     
