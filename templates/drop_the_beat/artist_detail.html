@@ -5,17 +5,14 @@
 {% endblock %}
 
 {% block body_block %}
-    <div class="artist-page">
     <div class="page-blocks">
     <div class="artist-name">
         <h1>{{ artist.name }}</h1>
-        <p>Profile Views: {{ artist.profile_views }}</p>
-    </div>
+        <p>Views: {{ artist.profile_views }}</p>
     </div>
 
-    <hr />
 
-    <div class="page-blocks">
+    <div class="bio">
     {% if artist.bio %}
         <p>{{ artist.bio }}</p>
     {% else %}
@@ -28,9 +25,8 @@
 
     {% if albums %}
         {% for album_name, songs in albums.items %}
-        <div class="song-list">
 
-            
+            <div class="song-list">
 
             <h2>{% if songs.0.album_art %}
                 <img src="{{ songs.0.album_art }}" alt="Album Art" width="150" height="150">
@@ -47,8 +43,8 @@
 
                 {% endfor %}
             </ul>
-            
-        </div>
+            </div>
+
 
         <br />
         {% endfor %}
