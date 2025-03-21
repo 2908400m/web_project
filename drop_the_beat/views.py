@@ -26,9 +26,11 @@ spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 def home(request):
     popular_artists = Artist.objects.order_by('-profile_views')[:10]
+    popular_songs = Song.objects.order_by('-view_count')[:10]
 
     context = {
-        'popular_artists': popular_artists
+        'popular_artists': popular_artists,
+        'popular_songs': popular_songs
     }
     
     return render(request, 'drop_the_beat/home.html', context)
@@ -199,6 +201,8 @@ def song(request, song_id):
     reviews = defaultdict(list)
     song_reviews = song.reviews.all()
     review_form = ReviewForm()
+    song.view_count += 1
+    song.save()
 
     for review in song_reviews:
         print(review.comment)
@@ -219,3 +223,4 @@ def song(request, song_id):
                 return redirect('song', song_id=song.id)
 
     return render(request, 'drop_the_beat/song.html', {'song': song,'reviews':dict(reviews),'review_form': review_form})
+
