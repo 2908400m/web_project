@@ -15,6 +15,12 @@
 
     <h2>Reviews</h2>
 
+    {% if error %}
+        <div style="color: red; padding: 10px; margin-bottom: 15px; border: 1px solid red; background-color: #ffe6e6;">
+            {{ error }}
+        </div>
+    {% endif %}
+
     {% if reviews and song.title in reviews %}
         <ul>
             {% for review_list in reviews.values %}

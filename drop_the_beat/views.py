@@ -220,7 +220,8 @@ def song(request, song_id):
         if request.user.is_authenticated:
             if review_form.is_valid():
                 if Review.objects.filter(user=request.user, song=song).exists():
-                    return HttpResponse("You cant leave a review for the same song twice.")
+                    error_message=f"user {request.user} can't submit a review for {song.title} twice"
+                    return render(request, 'drop_the_beat/song.html', {'song': song,'reviews':dict(reviews),'review_form': review_form, 'error':error_message})
                 else:
                     review = review_form.save(commit=False)
                     review.song = song
