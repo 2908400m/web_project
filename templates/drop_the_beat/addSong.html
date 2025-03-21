@@ -7,6 +7,12 @@
 {% block body_block %}
     <h1>Add a New Song</h1>
 
+    {% if error %}
+        <div style="color: red; padding: 10px; margin-bottom: 15px; border: 1px solid red; background-color: #ffe6e6;">
+            {{ error }}
+        </div>
+    {% endif %}
+
     <form method="POST">
         {% csrf_token %}
 
