@@ -41,9 +41,10 @@ Now when all the requirements are met you can run the project.
 
 
 
+
 ## :)
 
-Thank you for chosing Drop the Beat!
+Thank you for choosing Drop the Beat!
 
 
 © 2025 UofG WAD2 Team 7D
