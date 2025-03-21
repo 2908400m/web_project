@@ -48,10 +48,10 @@ def addSong(request):
         if song_form.is_valid() and review_form.is_valid():
 
             title = song_form.cleaned_data["title"]
-            artist = song_form.cleaned_data["artist"]
+            artist_name = song_form.cleaned_data["artist"]
             genre = song_form.cleaned_data["genre"]
 
-            song_data = search_song_on_spotify(title, artist)
+            song_data = search_song_on_spotify(title, artist_name)
 
             if song_data:
                 artist = Artist.objects.get_or_create(name=song_data['artist_name'])[0]
@@ -64,16 +64,20 @@ def addSong(request):
                     album_name=song_data["album_name"]
                     )
                 song.save()
+
+                review = review_form.save(commit=False)
+                review.song = song
+                review.user = request.user 
+                review.save()
+
+                return redirect('artists')
             else:
-                print(f"The song {title} by {artist} does not exist on spotify")
-                return HttpResponse("The submitted song does not exist on spotify.")
-
-            review = review_form.save(commit=False)
-            review.song = song
-            review.user = request.user 
-            review.save()
-
-            return redirect('artists') 
+                print(f"The song {title} by {artist_name} does not exist on spotify")
+                return render(request, 'drop_the_beat/addSong.html', {
+                    'song_form': song_form,
+                    'review_form': review_form,
+                    'error': "The submitted song does not exist on Spotify."
+                })
 
     else:
         song_form = SongForm()

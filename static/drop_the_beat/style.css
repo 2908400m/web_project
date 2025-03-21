@@ -165,7 +165,12 @@ body {
 /* Artist */
 
 .artist-name {
-  width:30%;
+  width: 400px;
+  float: left;
+}
+
+.bio {
+  margin-left: 400px;
 }
 
 .artist-page {
@@ -177,18 +182,70 @@ body {
 }
 
 .song-list {
-  display:inline-block;
-  justify-content: center;
+  flex:1;
   background-color:darkslateblue;
-  border-radius: 15px;
-  text-align:left;
-  color:white;
-  width:100%;
   padding: 14px 16px;
-  margin-block-end: 15px;
+  font-size: 18px;
+  border-radius: 15px;
+  color:white;
 }
 
 .song-list a{
   color:white;
   overflow:hidden;
+}
+
+/* Artists */
+
+.artists {
+  padding: 14px 16px;
+  background-color:darkorchid;
+  color:white;
+  text-align:center;
+  border-radius: 15px;
+}
+
+.artists li{
+  list-style-type: none;
+}
+.artists a{
+  color:white;
+  overflow:hidden;
+}
+
+.artists a:hover{
+  color:lightgray;
+}
+
+/* Genres */
+
+.genres-table {
+  display:table;
+  border-spacing: 30px;
+}
+
+.genres-cell {
+  display:table-cell;
+  background-color:darkorchid;
+  padding: 28px 32px;
+  font-size: 28px;
+  color:white;
+  border-radius: 15px;
+}
+
+.genres-cell:hover {
+  background-color:rebeccapurple;
+}
+
+.genres-cell a{
+  text-decoration: none;
+  color:white;
+}
+
+.genres-name {
+  background-color: darkorchid;
+  padding: 14px 16px;
+  color: white;
+  text-align: center;
+  border-radius: 15px;
 }

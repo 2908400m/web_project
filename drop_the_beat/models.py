@@ -24,6 +24,7 @@ class Song(models.Model):
     spotify_track_id= models.CharField(max_length=255, blank=True)
     album_art = models.URLField(blank=True)
     album_name = models.CharField(max_length=225, blank=True)
+    view_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -42,6 +43,7 @@ class Review(models.Model):
     song = models.ForeignKey(Song, on_delete=models.CASCADE, related_name="reviews")
     rating = models.PositiveIntegerField(choices=[(1, "1"),(2, "2"),(3, "3"),(4, "4"),(5, "5")], default=5)  
     comment = models.TextField(max_length=255, blank = True)
+    view_count = models.PositiveIntegerField(default=0)
 
     class Meta:
         unique_together = ("user", "song")
