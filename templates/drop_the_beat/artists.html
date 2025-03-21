@@ -5,11 +5,12 @@
 {% endblock %}
 
 {% block body_block %}
+<div class="artists">
     <h1>Artists</h1>
-
     <ul>
         {% for artist in artists %}
             <li><a href="/drop_the_beat/artist/{{ artist.id }}/">{{ artist.name }}</a></li>
         {% endfor %}
     </ul>
+</div>
 {% endblock %}
