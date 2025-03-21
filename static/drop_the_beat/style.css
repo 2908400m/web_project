@@ -199,7 +199,7 @@ body {
 
 .artists {
   padding: 14px 16px;
-  background-color:#9C27B0;
+  background-color:darkorchid;
   color:white;
   text-align:center;
   border-radius: 15px;
@@ -215,4 +215,37 @@ body {
 
 .artists a:hover{
   color:lightgray;
+}
+
+/* Genres */
+
+.genres-table {
+  display:table;
+  border-spacing: 30px;
+}
+
+.genres-cell {
+  display:table-cell;
+  background-color:darkorchid;
+  padding: 28px 32px;
+  font-size: 28px;
+  color:white;
+  border-radius: 15px;
+}
+
+.genres-cell:hover {
+  background-color:rebeccapurple;
+}
+
+.genres-cell a{
+  text-decoration: none;
+  color:white;
+}
+
+.genres-name {
+  background-color: darkorchid;
+  padding: 14px 16px;
+  color: white;
+  text-align: center;
+  border-radius: 15px;
 }
