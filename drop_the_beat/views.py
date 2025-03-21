@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
@@ -7,7 +8,7 @@ from django.urls import reverse
 from django.conf import settings
 from drop_the_beat.forms import UserForm, UserProfileForm
 from django.shortcuts import render, get_object_or_404
-from .models import Artist, Song, Genre
+from .models import Artist, Song, Genre, Review
 from .forms import SongForm, ReviewForm
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -198,8 +199,7 @@ def song(request, song_id):
     song = get_object_or_404(Song, id=song_id) 
     reviews = defaultdict(list)
     song_reviews = song.reviews.all()
-    review_form = ReviewForm()
-
+    
     for review in song_reviews:
         print(review.comment)
         if review.comment and review.comment != '':
@@ -208,14 +208,19 @@ def song(request, song_id):
                 "comment":review.comment
             })
 
+    review_form = ReviewForm(request.POST or None)
+
     if request.method == "POST":
         if request.user.is_authenticated:
-            review_form = ReviewForm(request.POST)
             if review_form.is_valid():
-                review = review_form.save(commit=False)
-                review.song = song
-                review.user = request.user
-                review.save()
-                return redirect('song', song_id=song.id)
-
+                if Review.objects.filter(user=request.user, song=song).exists():
+                    return HttpResponse("You cant leave a review for the same song twice.")
+                else:
+                    review = review_form.save(commit=False)
+                    review.song = song
+                    review.user = request.user 
+                    review.save()                
+                
+                return redirect('drop_the_beat:song', song_id=song.id)
+            
     return render(request, 'drop_the_beat/song.html', {'song': song,'reviews':dict(reviews),'review_form': review_form})
