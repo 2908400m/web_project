@@ -43,4 +43,6 @@
         <p><a href="{% url 'drop_the_beat:login' %}">Login</a> to leave a review!</p>
     {% endif %}
 
+    <p><a href="{% url 'drop_the_beat:artist_detail' artist.id %}">Back</a> to {{ artist.name }}'s page</p>
+
 {% endblock %}

@@ -199,6 +199,7 @@ def search_song_on_spotify(title, artist_name):
 
 def song(request, song_id):
     song = get_object_or_404(Song, id=song_id) 
+    artist = song.artist
     reviews = defaultdict(list)
     song_reviews = song.reviews.all()
     
@@ -231,4 +232,4 @@ def song(request, song_id):
                 
                 return redirect('drop_the_beat:song', song_id=song.id)
             
-    return render(request, 'drop_the_beat/song.html', {'song': song,'reviews':dict(reviews),'review_form': review_form})
+    return render(request, 'drop_the_beat/song.html', {'song': song,'artist':artist,'reviews':dict(reviews),'review_form': review_form})
