@@ -13,19 +13,21 @@
         {% else %}
             <p>No album art available</p>
         {% endif %}
+        
     <h1>{{ song.title }}</h1>
-
-    <h3>Artist: {{ song.artist }}</h3>
-    <h3>Album: {{ song.album_name }}</h3>
-    <p>Views: {{ song.view_count }}</p>
-
+    
     {% if song.spotify_track_id %}
         <iframe src="https://open.spotify.com/embed/track/{{song.spotify_track_id}}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     {% else %}
         <p> No music preview avaliable</p>
     {% endif %}
+
+    <h3>Artist: {{ song.artist }}</h3>
+    <h3>Album: {{ song.album_name }}</h3>
+    <p>Views: {{ song.view_count }}</p>
+
     </div>
-    
+
     <div class="reviews">
     <h2>Reviews</h2>
 
