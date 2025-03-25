@@ -5,7 +5,18 @@
 {% endblock %}
 
 {% block body_block %}
+    <div class="song-page">
+
+    <div class="song-info">
+        <h2>{% if song.album_art %}
+            <img src="{{ song.album_art }}" alt="Album Art" width="300" height="300">
+        {% else %}
+            <p>No album art available</p>
+        {% endif %}
     <h1>{{ song.title }}</h1>
+
+    <h3>Artist: {{ song.artist }}</h3>
+    <h3>Album: {{ song.album_name }}</h3>
     <p>Views: {{ song.view_count }}</p>
 
     {% if song.spotify_track_id %}
@@ -13,7 +24,9 @@
     {% else %}
         <p> No music preview avaliable</p>
     {% endif %}
-
+    </div>
+    
+    <div class="reviews">
     <h2>Reviews</h2>
 
     {% if error %}
@@ -42,7 +55,8 @@
     {% else %}
         <p><a href="{% url 'drop_the_beat:login' %}">Login</a> to leave a review!</p>
     {% endif %}
-
-    <p><a href="{% url 'drop_the_beat:artist_detail' artist.id %}">Back</a> to {{ artist.name }}'s page</p>
+    </div>
+    </div>
+    <p><a href="{% url 'drop_the_beat:artist_detail' artist.id %}">Back to {{ artist.name }}'s page</a></p>
 
 {% endblock %}

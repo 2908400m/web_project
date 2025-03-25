@@ -8,10 +8,10 @@
 <div class="artists">
     <h1>Artists</h1>
     <p>Select an artist to see their songs:</p>
-    
+
         {% for artist in artists %}
             <a href="/drop_the_beat/artist/{{ artist.id }}/">{{ artist.name }}</a>
+            <br />
         {% endfor %}
-
 </div>
 {% endblock %}
