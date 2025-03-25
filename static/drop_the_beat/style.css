@@ -271,3 +271,33 @@ body {
   padding:14px 16px;
   border-radius: 15px;
 }
+
+/* Add song */
+
+.add-song-page {
+  width: 850px;
+  border-radius: 30px;
+  margin: auto;
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.button {
+  font-size: 20px;
+  padding: 10px 40px;
+  background-color:darkslateblue;
+  border: 0;
+  border-radius: 10px;
+  color: white;
+}
+
+/* Genre */
+
+.genre-page{
+  text-align:center;
+}
+.genre-page li{
+  list-style-type:none;
+}
