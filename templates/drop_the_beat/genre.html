@@ -13,7 +13,7 @@
         <ul>
             {% for song in songs %}
                 <li><a href="{% url 'drop_the_beat:song' song.id %}">{{ song.title }}</a> by {{ song.artist.name }}</li>
-                
+                <br />
             {% endfor %}
         </ul>
     {% else %}
