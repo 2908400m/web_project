@@ -87,7 +87,8 @@ def populate():
         song_data["artist"], 
         song_data["genre"],  
         song["spotify_track_id"],
-        song["cover_art"]
+        song["cover_art"],
+        song["album_name"]
     )
 
     # for profile_data in user_profiles:
@@ -108,12 +109,12 @@ def add_genre(name):
     genre, created = Genre.objects.get_or_create(genre=name)
     return genre
 
-def add_song(title, artist_name, genre_name, spotify_track_id, album_art):
+def add_song(title, artist_name, genre_name, spotify_track_id, album_art, album_name):
     artist, _ = Artist.objects.get_or_create(name=artist_name)
     genre, _ = Genre.objects.get_or_create(genre=genre_name)
     song, created = Song.objects.get_or_create(
         title=title, artist=artist, genre=genre,
-        defaults={"spotify_track_id": spotify_track_id, "album_art": album_art}
+        defaults={"spotify_track_id": spotify_track_id, "album_art": album_art, "album_name": album_name}
     )
     return song
 
