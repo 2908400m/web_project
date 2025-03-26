@@ -94,10 +94,10 @@ def add_song(title, artist_name, genre_name, spotify_track_id, song_preview_url,
     )
     return song
 
-def add_review(user, song_title, rating, comment):
+def add_review(user, song, rating, comment):
     try:
         user_obj = User.objects.get(username=user)  # Get the actual user object
-        song = Song.objects.get(title=song_title)
+        song = Song.objects.get(title=song)
         review, created = Review.objects.get_or_create(
             user=user_obj, song=song, defaults={"rating": rating, "comment": comment}
         )

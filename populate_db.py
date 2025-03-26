@@ -4,7 +4,8 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'web_project.settings')
 django.setup()
 
-from drop_the_beat.models import Artist, Genre, Review, UserProfile, Song
+from drop_the_beat.models import Artist, Genre, Review, UserProfile, Song 
+from django.contrib.auth.models import User
 
 def populate():
     artists = [
@@ -28,16 +29,16 @@ def populate():
     ]
 
     reviews = [
-        {"user": "enter username", "song": "enter song", "rating": "enter rating", "comment": "enter comment"},
-        {"user": "enter username", "song": "enter song", "rating": "enter rating", "comment": "enter comment"},
-        {"user": "enter username", "song": "enter song", "rating": "enter rating", "comment": "enter comment"},
-        {"user": "enter username", "song": "enter song", "rating": "enter rating", "comment": "enter comment"}
+        {"user": "enter4username", "song": "enter song", "rating": 1, "comment": "enter comment"},
+        {"user": "enter3username", "song": "enter song", "rating": 3, "comment": "enter comment"},
+        {"user": "enter2username", "song": "enter song", "rating": 4, "comment": "enter comment"},
+        {"user": "enterusername", "song": "enter song", "rating": 5, "comment": "enter comment"}
     ]
 
     user_profiles = [
-        {"user": "enter username", "bio": "enter bio", "user_image": "enter image url", "favourite_genre": "enter genre"},
-        {"user": "enter username", "bio": "enter bio", "user_image": "enter image url", "favourite_genre": "enter genre"},
-        {"user": "enter username", "bio": "enter bio", "user_image": "enter image url", "favourite_genre": "enter genre"}
+        {"user": "enterusername", "bio": "enter bio", "user_image": "enter image url", "favourite_genre": "enter genre"},
+        {"user": "enter3username", "bio": "enter bio", "user_image": "enter image url", "favourite_genre": "enter genre"},
+        {"user": "enter4username", "bio": "enter bio", "user_image": "enter image url", "favourite_genre": "enter genre"}
     ]
 
     songs = [
@@ -52,6 +53,17 @@ def populate():
         {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
         {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"}
     ]
+
+    users = [
+    {"username": "enterusername", "email": "user1@example.com"},
+    {"username": "enter2username", "email": "user2@example.com"},
+    {"username": "enter3username", "email": "user3@example.com"}
+    ]
+
+    for user_data in users:
+        User.objects.get_or_create(username=user_data["username"], defaults={"email": user_data["email"]})
+
+
 
     for artist_data in artists:
         add_artist(**artist_data)
@@ -69,11 +81,11 @@ def populate():
         song_data["album_art"]
     )
 
-    for review_data in reviews:
-        add_review(**review_data)
-
     for profile_data in user_profiles:
         add_user_profile(**profile_data)
+
+    for review_data in reviews:
+        add_review(**review_data)
     
     print("Database populated successfully!")
 
@@ -96,15 +108,17 @@ def add_song(title, artist_name, genre_name, spotify_track_id, song_preview_url,
     )
     return song
 
-def add_review(user, song_title, rating, comment):
+def add_review(user, song, rating, comment):
     try:
-        user_obj = User.objects.get(username=user)  # Get the actual user object
-        song = Song.objects.get(title=song_title)
+        user_obj = UserProfile.objects.get(user=user)  # Get the actual user object
+        song = Song.objects.get(title=song)
+        
+        rating = int(rating)
         review, created = Review.objects.get_or_create(
             user=user_obj, song=song, defaults={"rating": rating, "comment": comment}
         )
         return review
-    except User.DoesNotExist:
+    except UserProfile.DoesNotExist:
         print(f"Error: User '{user}' does not exist.")
         return None
     except Song.DoesNotExist:
@@ -118,9 +132,9 @@ def add_user_profile(user, bio, user_image, favourite_genre):
         print(f"Error: User '{user}' does not exist.")
         return None
 
-    genre, _ = Genre.objects.get_or_create(name=favourite_genre)
+    genre, _ = Genre.objects.get_or_create(genre=favourite_genre)
     user_profile, created = UserProfile.objects.get_or_create(
-        user=user_obj, defaults={"bio": bio, "user_image": user_image, "favourite_genre": genre}
+        user=user_obj, defaults={"bio": bio, "favorite_genre": genre}
     )
     return user_profile
 
