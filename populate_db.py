@@ -77,8 +77,8 @@ def populate():
         song_data["album_art"]
     )
 
-    for profile_data in user_profiles:
-        add_user_profile(**profile_data)
+    # for profile_data in user_profiles:
+    #     add_user_profile(**profile_data)
 
     for review_data in reviews:
         add_review(**review_data)
