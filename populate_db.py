@@ -23,9 +23,9 @@ def populate():
     ]
 
     genres = [
-        {"name": "pop"},
-        {"name": "rap"},
-        {"name": "rock"},
+        {"genre": "pop"},
+        {"genre": "rap"},
+        {"genre": "rock"},
     ]
 
     reviews = [
@@ -69,7 +69,7 @@ def populate():
         add_artist(**artist_data)
 
     for genre_data in genres:
-        add_genre(genre_data["name"])
+        add_genre(genre_data["genre"])
 
     for song_data in songs:
         add_song(

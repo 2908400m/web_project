@@ -4,7 +4,8 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'web_project.settings')
 django.setup()
 
-from rango.models import Artist, Genre, Review, UserProfile, Song
+from django.contrib.auth.models import User
+from .models import Artist, Genre, Review, UserProfile, Song
 
 def populate():
     artists = [
@@ -20,9 +21,9 @@ def populate():
     ]
 
     genres = [
-        {"name": "pop"},
-        {"name": "rap"},
-        {"name": "rock"},
+        {"genre": "pop"},
+        {"genre": "rap"},
+        {"genre": "rock"},
     ]
 
     reviews = [
@@ -55,7 +56,7 @@ def populate():
         add_artist(**artist_data)
 
     for genre_data in genres:
-        add_genre(genre_data["name"])
+        add_genre(genre_data["genre"])
 
     for song_data in songs:
         add_song(
@@ -82,12 +83,12 @@ def add_artist(name, bio, image, spotify_id):
     return artist
 
 def add_genre(name):
-    genre, created = Genre.objects.get_or_create(name=name)
+    genre, created = Genre.objects.get_or_create(genre=name)
     return genre
 
 def add_song(title, artist_name, genre_name, spotify_track_id, song_preview_url, album_art):
     artist, _ = Artist.objects.get_or_create(name=artist_name)
-    genre, _ = Genre.objects.get_or_create(name=genre_name)
+    genre, _ = Genre.objects.get_or_create(genre=genre_name)
     song, created = Song.objects.get_or_create(
         title=title, artist=artist, genre=genre,
         defaults={"spotify_track_id": spotify_track_id, "song_preview_url": song_preview_url, "album_art": album_art}
@@ -116,7 +117,7 @@ def add_user_profile(user, bio, user_image, favourite_genre):
         print(f"Error: User '{user}' does not exist.")
         return None
 
-    genre, _ = Genre.objects.get_or_create(name=favourite_genre)
+    genre, _ = Genre.objects.get_or_create(genre=favourite_genre)
     user_profile, created = UserProfile.objects.get_or_create(
         user=user_obj, defaults={"bio": bio, "user_image": user_image, "favourite_genre": genre}
     )
