@@ -12,17 +12,20 @@
         {% block title_block %}
         {% endblock %}
     </title>
+    <link href="https://getbootstrap.com/docs/4.2/dist/css/bootstrap.min.css"
+        rel="stylesheet">
     <link rel="stylesheet" href="{% static 'drop_the_beat/style.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
     <script src="https://kit.fontawesome.com/ff24323b79.js" crossorigin="anonymous"></script>
+    
 </head>
 <body>
 
-    <div class="main_name">
+    <div class="main-name">
     <a href="{% url 'drop_the_beat:home' %}">Drop The Beat <i class="fas fa-music"></i></a>
     </div>
     <br />
-    <div class = "top_right_nav">
+    <div class = "top-right-nav">
         <ul>
             <li>
                 <a href="{% url 'drop_the_beat:contact' %}">Contact Us</a></li>
@@ -50,26 +53,26 @@
         {% endif %}
     </div>
     <br />
-
-    <div class="nav_bar">
-    <ul>
-    <li>
-        <a href="{% url 'drop_the_beat:home' %}">Home</a></li>
     
-    <li>
-        <a href="{% url 'drop_the_beat:genres' %}">Genres</a></li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+    <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'drop_the_beat:home' %}">Home</a></li>
+    
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'drop_the_beat:genres' %}">Genres</a></li>
 
     
-    <li>
-        <a href="{% url 'drop_the_beat:artists' %}">Artists</a></li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'drop_the_beat:artists' %}">Artists</a></li>
     
     {% if user.is_authenticated %}
-    <li>
-        <a href="{% url 'drop_the_beat:addSong' %}">Add Song</a>
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'drop_the_beat:addSong' %}">Add Song</a>
     </li>
     {% endif %}
     </ul>
-    </div>
+</nav>
 <br />
     {% block body_block %}
     {% endblock %}

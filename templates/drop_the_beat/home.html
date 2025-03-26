@@ -6,13 +6,13 @@
 
 {% block body_block %}
 <div class="home-page">
-<div class="page-blocks">
+<div class="home-page-blocks">
     Genres
     <br />
     {% if genres %}
     <ul>
         {% for genre in genres %}
-        <li><a href="{% url 'genre_detail' genre.id %}">{{ genre.genre }}</a></li>
+        <li><a href="{% url 'drop_the_beat:genre_detail' genre.id %}">{{ genre.genre }}</a></li>
         {% endfor %}
         </ul>
     {% else %}
@@ -20,9 +20,7 @@
     {% endif %}
 </div>
 
-<hr />
-
-<div class="page-blocks">
+<div class="home-page-blocks">
     Top 10 songs
     <br />
     {% if popular_songs %}
@@ -37,9 +35,7 @@
     {% endif %}
 </div>
 
-<hr />
-
-<div class="page-blocks">
+<div class="home-page-blocks">
     Popular artists
     <br />
     {% if popular_artists %}

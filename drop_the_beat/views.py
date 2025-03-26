@@ -26,12 +26,14 @@ client_credentials_manager = SpotifyClientCredentials(
 spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 def home(request):
-    popular_artists = Artist.objects.order_by('-profile_views')[:10]
+    popular_artists = Artist.objects.order_by('-profile_views')[:5]
     popular_songs = Song.objects.order_by('-view_count')[:10]
+    genres = Genre.objects.all()
 
     context = {
         'popular_artists': popular_artists,
-        'popular_songs': popular_songs
+        'popular_songs': popular_songs,
+        'genres':genres
     }
     
     return render(request, 'drop_the_beat/home.html', context)

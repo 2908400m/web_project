@@ -25,9 +25,14 @@ class SongForm(forms.ModelForm):
         fields = ['title', 'artist', 'genre']
 
     def clean_artist(self):
-        artist_name = self.cleaned_data['artist']
-        artist, _ = Artist.objects.get_or_create(name=artist_name)  
-        return artist  
+        artist_name = self.cleaned_data['artist'].strip()
+        existing_artist = Artist.objects.filter(name__iexact=artist_name).first()
+        
+        if existing_artist:
+            return existing_artist
+        else:
+            artist = Artist.objects.create(name=artist_name)
+            return artist
 
     def clean_genre(self):
         genre_name = self.cleaned_data['genre'].lower()

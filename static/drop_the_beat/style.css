@@ -1,11 +1,12 @@
 /* Base classes */
 
 body {
-  font-family:"Comfortaa", Geneva, Tahoma, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
+  /* font-family:"Comfortaa", Geneva, Tahoma, sans-serif; */
   background-color:#A9C4EC;
 }
 
-.top_right_nav {
+.top-right-nav {
   position: absolute; 
   top: 0; 
   right:0; 
@@ -15,18 +16,18 @@ body {
   text-align: right;
 }
 
-.top_right_nav ul{
+.top-right-nav ul{
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
-.top_right_nav li {
+.top-right-nav li {
   float: right;
 }
 
-.top_right_nav li a {
+.top-right-nav li a {
   display: block;
   color:white;
   text-align: center;
@@ -34,18 +35,18 @@ body {
   text-decoration: none;
 }
 
-.top_right_nav li a:hover{
+.top-right-nav li a:hover{
   color:gray;
 }
 
-.nav_bar ul{
+.nav-bar ul{
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
-.nav_bar ul{
+.nav-bar ul{
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -54,11 +55,11 @@ body {
   text-align: center;
 }
 
-.nav_bar li {
+.nav-bar li {
   float: left;
 }
 
-.nav_bar li a {
+.nav-bar li a {
   display: block;
   color:white;
   text-align: center;
@@ -66,11 +67,11 @@ body {
   text-decoration: none;
 }
 
-.nav_bar li a:hover {
+.nav-bar li a:hover {
   background-color: #5252CC;
 }
 
-.main_name {
+.main-name {
   display:inline-block;
   background-color: #6666FF;
   padding: 14px 16px;
@@ -79,11 +80,10 @@ body {
   border-radius: 15px;
 }
 
-.main_name a {
+.main-name a {
   text-decoration: none;
+  color: aliceblue;
 }
-
-/* Home page classes */
 
 .page-blocks {
   flex:1;
@@ -93,6 +93,7 @@ body {
   border-radius: 15px;
   color:white;
 }
+
 .page-blocks a{
   color:white;
   overflow:hidden;
@@ -106,12 +107,38 @@ body {
   text-decoration:none;
 }
 
+/* Home page classes */
+
 .home-page {
   display:flex;
   justify-content: center;
   position: relative;
   text-align: center;
   width: 100%;
+  background-color:#A9C4EC;
+}
+
+.top10 li{
+  list-style-type:decimal;
+}
+
+.home-page-blocks {
+  flex:1;
+  background-color:darkorchid;
+  padding: 14px 16px;
+  font-size: 18px;
+  border-radius: 15px;
+  color:white;
+  margin: 15px;
+}
+
+.home-page-blocks a{
+  color:white;
+  overflow:hidden;
+}
+
+.home-page-blocks a:hover{
+  color:lightgray;
 }
 
 /* Login classes */
@@ -297,8 +324,14 @@ body {
 /* Genre */
 
 .genre-page{
-  text-align:center;
+  text-align: center;
 }
 .genre-page li{
-  list-style-type:none;
+  list-style-type: none;
+}
+
+/* Bootstrap custom classes */
+
+.navbar-custom{
+  background-color:green !important;
 }
