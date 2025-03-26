@@ -25,6 +25,7 @@
     <h3>Artist: {{ song.artist }}</h3>
     <h3>Album: {{ song.album_name }}</h3>
     <p>Views: {{ song.view_count }}</p>
+    <button id="like-Button">👍 Like</button>
 
     </div>
 
@@ -61,4 +62,9 @@
     </div>
     <p><a href="{% url 'drop_the_beat:artist_detail' artist.id %}">Back to {{ artist.name }}'s page</a></p>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let likeButton = document.getElementById("like-Button");
+        });
+        </script>
 {% endblock %}
