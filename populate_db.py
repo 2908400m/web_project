@@ -42,16 +42,16 @@ def populate():
     ]
 
     songs = [
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"}
+        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "album_art": "enter album art url"}
     ]
 
     users = [
@@ -77,7 +77,6 @@ def populate():
         song_data["artist"], 
         song_data["genre"],  
         song_data["spotify_track_id"],
-        song_data["song_preview_url"],
         song_data["album_art"]
     )
 
@@ -99,12 +98,12 @@ def add_genre(name):
     genre, created = Genre.objects.get_or_create(genre=name)
     return genre
 
-def add_song(title, artist_name, genre_name, spotify_track_id, song_preview_url, album_art):
+def add_song(title, artist_name, genre_name, spotify_track_id, album_art):
     artist, _ = Artist.objects.get_or_create(name=artist_name)
     genre, _ = Genre.objects.get_or_create(genre=genre_name)
     song, created = Song.objects.get_or_create(
         title=title, artist=artist, genre=genre,
-        defaults={"spotify_track_id": spotify_track_id, "song_preview_url": song_preview_url, "album_art": album_art}
+        defaults={"spotify_track_id": spotify_track_id, "album_art": album_art}
     )
     return song
 
