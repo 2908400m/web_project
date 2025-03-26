@@ -9,17 +9,17 @@ from django.contrib.auth.models import User
 
 def populate():
     artists = [
-        {"name": "enter name", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "enter name", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "enter name", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "enter name", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "enter name", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "enter name", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "enter name", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "enter name", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "enter name", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "enter name", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "enter name", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"}
+        {"name": "Taylor Swift", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Ariana Grande", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Foo Fighters", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Maroon 5", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Rihanna", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Kendrick Lamar", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Gracie Abrams", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Sabrina Carpenter", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Ed Sheeran", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Jay Z", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Katy Perry", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"}
     ]
 
     genres = [
@@ -28,41 +28,37 @@ def populate():
         {"genre": "rock"},
     ]
 
-    reviews = [
-        {"user": "enter4username", "song": "enter song", "rating": 1, "comment": "enter comment"},
-        {"user": "enter3username", "song": "enter song", "rating": 3, "comment": "enter comment"},
-        {"user": "enter2username", "song": "enter song", "rating": 4, "comment": "enter comment"},
-        {"user": "enterusername", "song": "enter song", "rating": 5, "comment": "enter comment"}
+    user_profiles = [
+        {"user": "johnsmith24", "bio": "enter bio", "user_image": "enter image url", "favourite_genre": "pop", "email":"enteremail"},
+        {"user": "rebecca123", "bio": "enter bio", "user_image": "enter image url", "favourite_genre": "rock", "email":"enteremail"},
+        {"user": "love_music94", "bio": "enter bio", "user_image": "enter image url", "favourite_genre": "rap", "email":"enteremail"}
     ]
 
-    user_profiles = [
-        {"user": "enterusername", "bio": "enter bio", "user_image": "enter image url", "favourite_genre": "enter genre"},
-        {"user": "enter3username", "bio": "enter bio", "user_image": "enter image url", "favourite_genre": "enter genre"},
-        {"user": "enter4username", "bio": "enter bio", "user_image": "enter image url", "favourite_genre": "enter genre"}
+    reviews = [
+        {"user": "johnsmith24", "song": "Shape Of You", "rating": 1, "comment": "Not a fan of this"},
+        {"user": "rebecca123", "song": "Firework", "rating": 3, "comment": "Meh, its ok"},
+        {"user": "love_music94", "song": "Shape Of You", "rating": 4, "comment": "Really like this song"},
+        {"user": "love_music94", "song": "Not Like Us", "rating": 5, "comment": "SO good!!!"}
     ]
+
+    
 
     songs = [
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "enter title", "artist": "enter artist", "genre": "enter genre", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"}
+        {"title": "Shake It Off", "artist": "Taylor Swift", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
+        {"title": "Not Like Us", "artist": "Kendrick Lamar", "genre": "rap", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
+        {"title": "No Tears Left To Cry", "artist": "Ariana Grande", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
+        {"title": "we can't be friends", "artist": "Ariana Grande", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
+        {"title": "Breakin' Dishes", "artist": "Rihanna", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
+        {"title": "Firework", "artist": "Katy Perry", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
+        {"title": "Espresso", "artist": "Sabrina Carpenter", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
+        {"title": "Please Please Please", "artist": "Sabrina Carpenter", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
+        {"title": "The Pretender", "artist": "Foo Fighters", "genre": "rock", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
+        {"title": "Shape Of You", "artist": "Ed Sheeran", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"}
     ]
 
-    users = [
-    {"username": "enterusername", "email": "user1@example.com"},
-    {"username": "enter2username", "email": "user2@example.com"},
-    {"username": "enter3username", "email": "user3@example.com"}
-    ]
 
-    for user_data in users:
-        User.objects.get_or_create(username=user_data["username"], defaults={"email": user_data["email"]})
-
+    for user_data in user_profiles:
+        add_user_profile(user_data["user"], user_data["bio"], user_data["user_image"], user_data["favourite_genre"], user_data["email"])
 
 
     for artist_data in artists:
@@ -122,19 +118,13 @@ def add_review(user, song, rating, comment):
         print(f"Error: User '{user}' does not exist.")
         return None
     except Song.DoesNotExist:
-        print(f"Error: Song '{song_title}' does not exist.")
+        print(f"Error: Song '{song.title}' does not exist.")
         return None
 
-def add_user_profile(user, bio, user_image, favourite_genre):
-    try:
-        user_obj = User.objects.get(username=user)  # Get the actual user object
-    except User.DoesNotExist:
-        print(f"Error: User '{user}' does not exist.")
-        return None
-
+def add_user_profile(user, bio, user_image, favourite_genre, email):
     genre, _ = Genre.objects.get_or_create(genre=favourite_genre)
     user_profile, created = UserProfile.objects.get_or_create(
-        user=user_obj, defaults={"bio": bio, "favorite_genre": genre}
+        user=user, defaults={"bio": bio, "favorite_genre": genre, "profile_picture": user_image, "email": email}
     )
     return user_profile
 
