@@ -44,16 +44,16 @@ def populate():
     
 
     songs = [
-        {"title": "Shake It Off", "artist": "Taylor Swift", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "Not Like Us", "artist": "Kendrick Lamar", "genre": "rap", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "No Tears Left To Cry", "artist": "Ariana Grande", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "we can't be friends", "artist": "Ariana Grande", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "Breakin' Dishes", "artist": "Rihanna", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "Firework", "artist": "Katy Perry", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "Espresso", "artist": "Sabrina Carpenter", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "Please Please Please", "artist": "Sabrina Carpenter", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "The Pretender", "artist": "Foo Fighters", "genre": "rock", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"},
-        {"title": "Shape Of You", "artist": "Ed Sheeran", "genre": "pop", "spotify_track_id": "enter track id", "song_preview_url": "enter preview url", "album_art": "enter album art url"}
+        {"title": "Shake It Off", "artist": "Taylor Swift", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "Not Like Us", "artist": "Kendrick Lamar", "genre": "rap", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "No Tears Left To Cry", "artist": "Ariana Grande", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "we can't be friends", "artist": "Ariana Grande", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "Breakin' Dishes", "artist": "Rihanna", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "Firework", "artist": "Katy Perry", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "Espresso", "artist": "Sabrina Carpenter", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "Please Please Please", "artist": "Sabrina Carpenter", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "The Pretender", "artist": "Foo Fighters", "genre": "rock", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
+        {"title": "Shape Of You", "artist": "Ed Sheeran", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"}
     ]
 
 
@@ -73,7 +73,6 @@ def populate():
         song_data["artist"], 
         song_data["genre"],  
         song_data["spotify_track_id"],
-        song_data["song_preview_url"],
         song_data["album_art"]
     )
 
@@ -95,12 +94,12 @@ def add_genre(name):
     genre, created = Genre.objects.get_or_create(genre=name)
     return genre
 
-def add_song(title, artist_name, genre_name, spotify_track_id, song_preview_url, album_art):
+def add_song(title, artist_name, genre_name, spotify_track_id, album_art):
     artist, _ = Artist.objects.get_or_create(name=artist_name)
     genre, _ = Genre.objects.get_or_create(genre=genre_name)
     song, created = Song.objects.get_or_create(
         title=title, artist=artist, genre=genre,
-        defaults={"spotify_track_id": spotify_track_id, "song_preview_url": song_preview_url, "album_art": album_art}
+        defaults={"spotify_track_id": spotify_track_id, "album_art": album_art}
     )
     return song
 
