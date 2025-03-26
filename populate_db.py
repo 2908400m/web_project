@@ -1,11 +1,24 @@
 import os
 import django
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+import os
+from collections import defaultdict
+from dotenv import load_dotenv
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'web_project.settings')
 django.setup()
 
+load_dotenv()
+
+client_credentials_manager = SpotifyClientCredentials(
+    client_id=os.getenv('SPOTIPY_CLIENT_ID'),
+    client_secret=os.getenv('SPOTIPY_CLIENT_SECRET')
+)
+
 from drop_the_beat.models import Artist, Genre, Review, UserProfile, Song 
 from django.contrib.auth.models import User
+spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 def populate():
     artists = [
@@ -68,12 +81,13 @@ def populate():
         add_genre(genre_data["genre"])
 
     for song_data in songs:
+        song = search_song_on_spotify(song_data["title"], song_data["artist"])
         add_song(
         song_data["title"],
         song_data["artist"], 
         song_data["genre"],  
-        song_data["spotify_track_id"],
-        song_data["album_art"]
+        song["spotify_track_id"],
+        song["cover_art"]
     )
 
     # for profile_data in user_profiles:
@@ -126,6 +140,26 @@ def add_user_profile(user, bio, user_image, favourite_genre, email):
         user=user, defaults={"bio": bio, "favorite_genre": genre, "profile_picture": user_image, "email": email}
     )
     return user_profile
+
+def search_song_on_spotify(title, artist_name):
+    query = f"track:{title} artist:{artist_name}"
+    results = spotify.search(q=query, limit=1, type="track")
+    
+    if results["tracks"]["items"]:
+        track=results["tracks"]["items"][0]
+    else:
+        track=None
+
+    if track:
+        return{
+            "title":track["name"],
+            "artist_name":track["artists"][0]["name"],
+            "spotify_track_id": track["id"],
+            "cover_art":track["album"]["images"][0]["url"],
+            "album_name":track["album"]["name"]
+        }
+    else:
+        return None 
 
 if __name__ == '__main__':
     print("Populating database...")
