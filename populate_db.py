@@ -22,19 +22,6 @@ spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 def populate():
     artists = [
-<<<<<<< Updated upstream
-        {"name": "Taylor Swift", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "Ariana Grande", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "Foo Fighters", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "Maroon 5", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "Rihanna", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "Kendrick Lamar", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "Gracie Abrams", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "Sabrina Carpenter", "bio": "Sabrina Carpenter has enchanted an audience of millions as a singer, songwriter, actress and style icon. With her music, she has delivered one anthem after another on stage and in the studio, earning multiple gold and platinum certifications, and performing to sold out crowds around the world. ", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "Ed Sheeran", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "Jay Z", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "Katy Perry", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"}
-=======
         {"name": "Taylor Swift", "bio": "Taylor Alison Swift (born December 13, 1989) is an American singer-songwriter.", "image": "enter image url", "spotify_id": "enter spotify id"},
         {"name": "Ariana Grande", "bio": "Ariana Grande-Butera born June 26, 1993) is an American singer, songwriter, and actress.", "image": "enter image url", "spotify_id": "enter spotify id"},
         {"name": "Foo Fighters", "bio": "The Foo Fighters are an American rock band formed in Seattle in 1994.", "image": "enter image url", "spotify_id": "enter spotify id"},
@@ -46,7 +33,6 @@ def populate():
         {"name": "Ed Sheeran", "bio": "Edward Christopher Sheeran (born 17 February 1991) is an English singer-songwriter.", "image": "enter image url", "spotify_id": "enter spotify id"},
         {"name": "Jay Z", "bio": "Shawn Corey Carter (born December 4, 1969), known professionally as Jay-Z,[a] is an American rapper, businessman, and record executive.", "image": "enter image url", "spotify_id": "enter spotify id"},
         {"name": "Katy Perry", "bio": "Katheryn Elizabeth Hudson (born October 25, 1984), known professionally as Katy Perry, is an American singer, songwriter, and television personality.", "image": "enter image url", "spotify_id": "enter spotify id"}
->>>>>>> Stashed changes
     ]
 
     genres = [
@@ -109,12 +95,6 @@ def populate():
         uploaded_user=user
     )
 
-    # for profile_data in user_profiles:
-    #     add_user_profile(**profile_data)
-
-    # for review_data in reviews:
-    #     add_review(**review_data)
-    
     print("Database populated successfully!")
 
 def add_artist(name, bio, image, spotify_id):
