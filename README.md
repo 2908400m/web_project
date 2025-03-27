@@ -38,6 +38,12 @@ pip install –r requirements.txt
 
 Now when all the requirements are met you can run the project.
 
+External sources:
+Spotipy API
+Bootstrap
+Google fonts
+Fontawesome
+
 
 
 
