@@ -22,6 +22,7 @@ spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 def populate():
     artists = [
+<<<<<<< Updated upstream
         {"name": "Taylor Swift", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
         {"name": "Ariana Grande", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
         {"name": "Foo Fighters", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
@@ -33,6 +34,19 @@ def populate():
         {"name": "Ed Sheeran", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
         {"name": "Jay Z", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
         {"name": "Katy Perry", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"}
+=======
+        {"name": "Taylor Swift", "bio": "Taylor Alison Swift (born December 13, 1989) is an American singer-songwriter.", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Ariana Grande", "bio": "Ariana Grande-Butera born June 26, 1993) is an American singer, songwriter, and actress.", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Foo Fighters", "bio": "The Foo Fighters are an American rock band formed in Seattle in 1994.", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Maroon 5", "bio": "Maroon 5 is an American pop rock band from Los Angeles, California.", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Rihanna", "bio": "Robyn Rihanna Fenty, born February 20, 1988) is a Barbadian singer, businesswoman, and actress.", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Kendrick Lamar", "bio": "Kendrick Lamar Duckworth (born June 17, 1987) is an American rapper.", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Gracie Abrams", "bio": "Gracie Madigan Abrams (born September 7, 1999) is an American singer-songwriter and daughter of J. J. Abrams.", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Sabrina Carpenter", "bio": "Sabrina Annlynn Carpenter (born May 11, 1999) is an American singer, songwriter, and actress.", "image": "enter image url", "spotify_id": "enter spotify id"},    
+        {"name": "Ed Sheeran", "bio": "Edward Christopher Sheeran (born 17 February 1991) is an English singer-songwriter.", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Jay Z", "bio": "Shawn Corey Carter (born December 4, 1969), known professionally as Jay-Z,[a] is an American rapper, businessman, and record executive.", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Katy Perry", "bio": "Katheryn Elizabeth Hudson (born October 25, 1984), known professionally as Katy Perry, is an American singer, songwriter, and television personality.", "image": "enter image url", "spotify_id": "enter spotify id"}
+>>>>>>> Stashed changes
     ]
 
     genres = [
