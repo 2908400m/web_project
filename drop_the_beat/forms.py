@@ -32,6 +32,7 @@ class SongForm(forms.ModelForm):
             return existing_artist
         else:
             artist = Artist.objects.create(name=artist_name)
+            
             return artist
 
     def clean_genre(self):

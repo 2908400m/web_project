@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.conf import settings
 from drop_the_beat.forms import UserForm, UserProfileForm
 from django.shortcuts import render, get_object_or_404
-from .models import Artist, Song, Genre, Review
+from .models import Artist, Song, Genre, Review, UserProfile
 from .forms import SongForm, ReviewForm
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -58,6 +58,9 @@ def addSong(request):
 
             song_data = search_song_on_spotify(title, artist_name)
 
+            user = request.user
+            user_profile = UserProfile.objects.get(user=user)
+
             if song_data:
                 artist = Artist.objects.get_or_create(name=song_data['artist_name'])[0]
                 song = Song(
@@ -66,8 +69,9 @@ def addSong(request):
                     genre=genre,
                     spotify_track_id=song_data["spotify_track_id"],
                     album_art=song_data["cover_art"],
-                    album_name=song_data["album_name"]
-                    )
+                    album_name=song_data["album_name"],
+                    uploaded_user=user_profile
+                )
                 song.save()
 
                 review = review_form.save(commit=False)

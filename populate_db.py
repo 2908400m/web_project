@@ -29,7 +29,7 @@ def populate():
         {"name": "Rihanna", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
         {"name": "Kendrick Lamar", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
         {"name": "Gracie Abrams", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
-        {"name": "Sabrina Carpenter", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
+        {"name": "Sabrina Carpenter", "bio": "Sabrina Carpenter has enchanted an audience of millions as a singer, songwriter, actress and style icon. With her music, she has delivered one anthem after another on stage and in the studio, earning multiple gold and platinum certifications, and performing to sold out crowds around the world. ", "image": "enter image url", "spotify_id": "enter spotify id"},
         {"name": "Ed Sheeran", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
         {"name": "Jay Z", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"},
         {"name": "Katy Perry", "bio": "enter bio", "image": "enter image url", "spotify_id": "enter spotify id"}
@@ -57,16 +57,16 @@ def populate():
     
 
     songs = [
-        {"title": "Shake It Off", "artist": "Taylor Swift", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
-        {"title": "Not Like Us", "artist": "Kendrick Lamar", "genre": "rap", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
-        {"title": "No Tears Left To Cry", "artist": "Ariana Grande", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
-        {"title": "we can't be friends", "artist": "Ariana Grande", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
-        {"title": "Breakin' Dishes", "artist": "Rihanna", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
-        {"title": "Firework", "artist": "Katy Perry", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
-        {"title": "Espresso", "artist": "Sabrina Carpenter", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
-        {"title": "Please Please Please", "artist": "Sabrina Carpenter", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
-        {"title": "The Pretender", "artist": "Foo Fighters", "genre": "rock", "spotify_track_id": "enter track id", "album_art": "enter album art url"},
-        {"title": "Shape Of You", "artist": "Ed Sheeran", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url"}
+        {"title": "Shake It Off", "artist": "Taylor Swift", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url", "uploaded_user": "rebecca123"},
+        {"title": "Not Like Us", "artist": "Kendrick Lamar", "genre": "rap", "spotify_track_id": "enter track id", "album_art": "enter album art url", "uploaded_user": "love_music94"},
+        {"title": "No Tears Left To Cry", "artist": "Ariana Grande", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url", "uploaded_user": "rebecca123"},
+        {"title": "we can't be friends", "artist": "Ariana Grande", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url", "uploaded_user": "rebecca123"},
+        {"title": "Breakin' Dishes", "artist": "Rihanna", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url", "uploaded_user": "love_music94"},
+        {"title": "Firework", "artist": "Katy Perry", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url", "uploaded_user": "rebecca123"},
+        {"title": "Espresso", "artist": "Sabrina Carpenter", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url", "uploaded_user": "love_music94"},
+        {"title": "Please Please Please", "artist": "Sabrina Carpenter", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url", "uploaded_user": "johnsmith24"},
+        {"title": "The Pretender", "artist": "Foo Fighters", "genre": "rock", "spotify_track_id": "enter track id", "album_art": "enter album art url", "uploaded_user": "johnsmith24"},
+        {"title": "Shape Of You", "artist": "Ed Sheeran", "genre": "pop", "spotify_track_id": "enter track id", "album_art": "enter album art url", "uploaded_user": "johnsmith24"}
     ]
 
 
@@ -81,6 +81,9 @@ def populate():
         add_genre(genre_data["genre"])
 
     for song_data in songs:
+
+        user = UserProfile.objects.get(user=song_data["uploaded_user"])
+
         song = search_song_on_spotify(song_data["title"], song_data["artist"])
         add_song(
         song_data["title"],
@@ -88,7 +91,8 @@ def populate():
         song_data["genre"],  
         song["spotify_track_id"],
         song["cover_art"],
-        song["album_name"]
+        song["album_name"],
+        uploaded_user=user
     )
 
     # for profile_data in user_profiles:
@@ -103,18 +107,23 @@ def add_artist(name, bio, image, spotify_id):
     artist, created = Artist.objects.get_or_create(
         name=name, defaults={"bio": bio, "image": image, "spotify_id": spotify_id}
     )
+
+    if not created:
+        artist.bio=bio
+        artist.save()
+
     return artist
 
 def add_genre(name):
     genre, created = Genre.objects.get_or_create(genre=name)
     return genre
 
-def add_song(title, artist_name, genre_name, spotify_track_id, album_art, album_name):
+def add_song(title, artist_name, genre_name, spotify_track_id, album_art, album_name, uploaded_user):
     artist, _ = Artist.objects.get_or_create(name=artist_name)
     genre, _ = Genre.objects.get_or_create(genre=genre_name)
     song, created = Song.objects.get_or_create(
         title=title, artist=artist, genre=genre,
-        defaults={"spotify_track_id": spotify_track_id, "album_art": album_art, "album_name": album_name}
+        defaults={"spotify_track_id": spotify_track_id, "album_art": album_art, "album_name": album_name, "uploaded_user":uploaded_user}
     )
     return song
 
