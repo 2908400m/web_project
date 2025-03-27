@@ -24,12 +24,14 @@
     Top 10 songs
     <br />
     {% if popular_songs %}
+    <div class ="top10">
     <ul>
         {% for song in popular_songs %}
         <li><a href="{% url 'song' song.id %}">{{ song.title }}</a> by {{ song.artist.name }}</li>
         <br />
         {% endfor %}
         </ul>
+    </div>
     {% else %}
         <strong>There are no songs present.</strong>
     {% endif %}

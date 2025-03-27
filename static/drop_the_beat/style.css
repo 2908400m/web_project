@@ -1,8 +1,8 @@
 /* Base classes */
 
 body {
-  font-family: Helvetica, Arial, sans-serif;
-  /* font-family:"Comfortaa", Geneva, Tahoma, sans-serif; */
+  /* font-family: Helvetica, Arial, sans-serif; */
+  font-family:"Comfortaa", Geneva, Tahoma, sans-serif;
   background-color:#A9C4EC;
 }
 
@@ -37,38 +37,6 @@ body {
 
 .top-right-nav li a:hover{
   color:gray;
-}
-
-.nav-bar ul{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.nav-bar ul{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color:#6666FF;
-  text-align: center;
-}
-
-.nav-bar li {
-  float: left;
-}
-
-.nav-bar li a {
-  display: block;
-  color:white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.nav-bar li a:hover {
-  background-color: #5252CC;
 }
 
 .main-name {
@@ -330,8 +298,3 @@ body {
   list-style-type: none;
 }
 
-/* Bootstrap custom classes */
-
-.navbar-custom{
-  background-color:green !important;
-}
