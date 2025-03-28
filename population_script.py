@@ -165,6 +165,6 @@ def search_song_on_spotify(title, artist_name):
     else:
         return None 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     print("Populating database...")
     populate()
